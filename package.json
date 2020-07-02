@@ -1,0 +1,29 @@
+{
+  "name": "Secret-Project-2",
+  "version": "1.0.0",
+  "description": "Take over the world",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.1.0",
+    "sequelize": "^6.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulFidika/Secret-Project-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulFidika/Secret-Project-2/issues"
+  },
+  "homepage": "https://github.com/PaulFidika/Secret-Project-2#readme"
+}
