@@ -5,11 +5,16 @@
 background-color: transparent !important ;
 height: 100% !important;
 }
+.sidenav .tabs .tab{
+display: block !important;
+
+}
 .tabs .tab{
   height: 100% !important;
 }
 .tabs .tab a{
 color : black !important;
+padding-top: 10px !important;
 
 }
 .tabs .indicator{

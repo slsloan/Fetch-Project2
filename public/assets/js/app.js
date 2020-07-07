@@ -13,6 +13,8 @@ $(document).ready(function () {
   initMap()
   $('.tabs').tabs();
   $('.profile-tabs').tabs();
+  $('.sidenav').sidenav();
+
 });
 $("#loginform").on("submit", function (event) {
   console.log("working?")
