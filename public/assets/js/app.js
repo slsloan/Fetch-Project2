@@ -9,3 +9,15 @@ function initMap() {
   // Example Marker
   var marker = new google.maps.Marker({ position: uluru, map: map });
 }
+$(document).ready(function () {
+  initMap()
+  $('.tabs').tabs();
+  $('.profile-tabs').tabs();
+});
+$("#loginform").on("submit", function (event) {
+  console.log("working?")
+  event.preventDefault()
+  const data = $(this).serializeArray()
+  console.log(data)
+  return (false)
+})
