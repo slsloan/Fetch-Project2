@@ -1,0 +1,11 @@
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the map fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
