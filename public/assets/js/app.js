@@ -14,6 +14,7 @@ $(document).ready(function () {
   $('.tabs').tabs();
   $('.profile-tabs').tabs();
   $('.sidenav').sidenav();
+  $('select').formSelect();
 
 });
 $("#loginform").on("submit", function (event) {

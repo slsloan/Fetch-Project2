@@ -4,6 +4,7 @@
 .tabs{
 background-color: transparent !important ;
 height: 100% !important;
+flex-direction: column;
 }
 .sidenav .tabs .tab{
 display: block !important;
