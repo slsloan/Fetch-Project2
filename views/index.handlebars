@@ -16,11 +16,13 @@
                 <ul class="tabs">
                     <li class="tab left hide-on-med-and-down s3 l6"><a href="#match">With in sniffing distance</a>
                     </li>
-                    <li class="tab left hide-on-med-and-down s3 l6"><a href="#profile">profile</a></li>
+                    <li class="tab  left hide-on-med-and-down s3 l6"><a class="active" href="#index">Home</a></li>
 
 
-                    <li class="tab  right hide-on-med-and-down s3 l6"><a class="active" href="#index">Home</a></li>
+
                     <li class="tab  right hide-on-med-and-down s3 l6"><a href="#parks">Find parks near you</a></li>
+                    <li class="tab right hide-on-med-and-down s3 l6"><a href="#profile">Log in</a></li>
+
                 </ul>
 
 
@@ -29,11 +31,19 @@
     </div>
 </div>
 
+
+<!-- log out -->
+<button style="display: none;" class="btn" id="logoutbutton">
+    log out
+</button>
+
+
 <!-- side bar -->
 <ul class="sidenav" id="mobile-links">
     <ul class="tabs">
+        <li class="tab "><a href="#profile">Log in</a></li>
+
         <li class="tab  "><a href="#match">With in sniffing distance</a></li>
-        <li class="tab "><a href="#profile">profile</a></li>
 
 
         <li class="tab  "><a class="active" href="#index">Home</a></li>
@@ -58,6 +68,7 @@
 
 
 
+
 <!-- log in or  update profile -->
 <div id="profile" class="card-panel">
     <ul class="profile-tabs">
@@ -68,6 +79,14 @@
         <li class="tab btn"><a href="#new_account">New Account</a>
 
         </li>
+        <li class="tab btn" style="display:none"><a href="#second_stage">New Account</a>
+
+        </li>
+        <li class="tab btn" style="display:none"><a href="#current_profile">New Account</a>
+
+        </li>
+
+
 
     </ul>
     <!-- log in -->
@@ -96,92 +115,187 @@
 
 
     </div>
+    <!-- New Account-->
     <div id='new_account'>
 
 
 
 
         <div class="row">
-            <form class="col s12">
+            <form id="new_account_form" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="Scooby" id="dog_name" type="text" class="validate">
+                        <input placeholder="Scooby" id="dog_name" name="dog_name" type="text" class="validate">
                         <label for="dog_name">Dog's name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="Doo" id="dog_last_name" type="text" class="validate">
+                        <input placeholder="Doo" id="dog_last_name" name="dog_last_name" type="text" class="validate">
                         <label for="dog_last_name">Dog last Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 "></div>
                     <div class="input-field col s6">
-                        <input placeholder="Fido" id="Screen_name" type="text" class="validate">
-                        <label for="Screen_name">Screen name</label>
+                        <input placeholder="Fido" id="screen_name" name="screen_name" type="text" class="validate">
+                        <label for="screen_name">Screen name</label>
+                    </div>
+                    <div class="input-field col m6">
+                        <select id="dog_breed" name="dog_breed">
+                            <option value="" selected>Dog Breed
+                            </option>
+                            <option value="1">Great Dane</option>
+                            <option value="2">Poodle.</option>
+                            <option value="3">cat.</option>
+                        </select>
+                        <label for="dog_breed">Dog Breed</label>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
+                        <input id="email" name="email" type="email" class="validate">
                         <label for="email">Email</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
+                        <input id="new_password" name="new_password" type="password" class="validate">
+                        <label for="new_password">Password</label>
                     </div>
                 </div>
 
-                <ul class="new_account">
-                    <li class="tab btn"><a href="#finish_creating_profile">Finish Creating Profile</a>
-                    </li>
-                </ul>
+                <button class="btn" type="submit">continue creating account
+                </button>
 
         </div>
         </form>
     </div>
+    <!-- second Stage -->
+    <div id="second_stage">
+        <form id="second_stage_form" class="row">
+            <div class="input-field col m6 l3">
+                <select id="dog_gender" name="dog_gender">
+                    <option value="" selected>Dog Gender</option>
+                    <option value="male">male</option>
+                    <option value="Female"> Female</option>
+                    <option value="Chose not to specify">Chose not to specify</option>
+                </select>
+                <label>Materialize Select</label>
+            </div>
+
+            <div class="input-field col m6 l3">
+                <select if="fixed" name="fixed">
+                    <option value="" selected>Is your dog fixed?</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                </select>
+                <label>Materialize Select</label>
+            </div>
+
+            <div class="input-field col m6 l3">
+                <select>
+                    <option value="" selected>What level of education</option>
+                    <option value="1">House Trained</option>
+                    <option value="2">Some Tricks</option>
+                    <option value="3">Graduated from a puppy academy</option>
+                </select>
+            </div>
+            <div class="input-field col m6 l3">
+                <select>
+                    <option value="" selected>How does your dog interact with other dogs?
+                    </option>
+                    <option value="Playful">Playful</option>
+                    <option value="Weiry at first but after getting to know a dog will become friendly.">Weiry at first
+                        but after getting to know a dog will become friendly.</option>
+                    <option value="Does not like dogs.">Does not like dogs.</option>
+                </select>
+                <label>Materialize Select</label>
+            </div>
+
+
+
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="about_your_dog" name="about_your_dog" class="materialize-textarea"></textarea>
+                        <label for="about_your_dog">Textarea</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 offset-s0 offset-l3">
+
+                <div class="card-panel">
+
+                    <div id="inputMap"></div>
+                </div>
+
+            </div>
+            <button class="btn" type="submit">Completed
+            </button>
+        </form>
+    </div>
+    <div id="current_profile">
+        <h1>welcome your Name</h1>
+
+
+        <div class="row">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/Unknown.jpg">
+                        <span class="card-title">Card Title</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card_info">
+                            <div>
+                                dog name
+                                <div id="cur_dog_name"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_dog_last"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_scree_name"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_dog_breed"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_email"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_dog_gender"> </div>
+
+                            </div>
+                            <div>
+                                dog name
+                                <div id="cur_about_your_dog"> </div>
+
+                            </div>
+                            <div>
+                                fixed
+                                <div id="cur_fixed"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<div class="row">
-    <div class="input-field col m6 l3">
-        <select>
-            <option value="" selected>Dog Gender</option>
-            <option value="male">male</option>
-            <option value="Female"> Female</option>
-            <option value="Chose not to specify">Chose not to specify</option>
-        </select>
-        <label>Materialize Select</label>
-    </div>
-
-    <div class="input-field col m6 l3">
-        <select>
-            <option value="" selected>Is your dog fixed?</option>
-            <option value="1">Yes</option>
-            <option value="2">No</option>
-        </select>
-        <label>Materialize Select</label>
-    </div>
-
-    <div class="input-field col m6 l3">
-        <select>
-            <option value="" selected>What level of education</option>
-            <option value="1">House Trained</option>
-            <option value="2">Some Tricks</option>
-            <option value="3">Graduated from a puppy academy</option>
-        </select>
-        <label>Materialize Select</label>
-    </div>
-    <div class="input-field col m6 l3">
-        <select>
-            <option value="" selected>How does your dog interact with other dogs?
-            </option>
-            <option value="1">Playful</option>
-            <option value="2">Weiry at first but after getting to know a dog will become friendly.</option>
-            <option value="3">Does not like dogs.</option>
-        </select>
-        <label>Materialize Select</label>
-    </div>
 </div>
