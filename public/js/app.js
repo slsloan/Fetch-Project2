@@ -1,4 +1,9 @@
 function initMap() {
+  $.ajax("/", {
+    method: "GET",
+  }).then(function (res) {
+    console.log("success!");
+  });
   //  Example Location
   var uluru = { lat: 39.7555, lng: -105.2211 };
   // Map default View
@@ -10,16 +15,15 @@ function initMap() {
   var marker = new google.maps.Marker({ position: uluru, map: map });
 }
 $(document).ready(function () {
-  initMap()
-  $('.tabs').tabs();
-  $('.profile-tabs').tabs();
-  $('.sidenav').sidenav();
-
+  initMap();
+  $(".tabs").tabs();
+  $(".profile-tabs").tabs();
+  $(".sidenav").sidenav();
 });
 $("#loginform").on("submit", function (event) {
-  console.log("working?")
-  event.preventDefault()
-  const data = $(this).serializeArray()
-  console.log(data)
-  return (false)
-})
+  console.log("working?");
+  event.preventDefault();
+  const data = $(this).serializeArray();
+  console.log(data);
+  return false;
+});
