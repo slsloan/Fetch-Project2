@@ -7,6 +7,13 @@ function initMap() {
     zoom: 12,
   });
   // Example Marker
+  
+  $.ajax("/", {
+    method: "GET",
+  }).then(function(res) {
+    console.log("success!")
+  })
+
   var marker = new google.maps.Marker({ position: uluru, map: map });
   google.maps.event.addListener(map, "click", (event) => {
     console.log(event.latLng.lat(), event.latLng.lng())
