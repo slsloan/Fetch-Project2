@@ -1,3 +1,4 @@
-# Project 2
+# Secret-Project-2
+Take over the world
 
-A blogging app made using Handlebars and an Express server backed by a MySQL database with a Sequelize ORM and deployed on Heroku: [Blogger](https://afternoon-beach-90137.herokuapp.com/)
+Team Magma: Calvin Gillam, Sammy Sloan, Will Hitch, and Paul Fidika.

@@ -1,5 +1,5 @@
--- Drops the blogger if it exists currently --
-DROP DATABASE IF EXISTS blogger;
+-- Drops the dogs if it exists currently --
+DROP DATABASE IF EXISTS dogs_db;
 
--- Creates the "blogger" database --
-CREATE DATABASE blogger;
+-- Creates the "dogs" database --
+CREATE DATABASE dogs_db;
