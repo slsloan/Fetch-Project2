@@ -145,3 +145,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+    const client = filestack.init(API_KEY);
+
+    const options = {
+        onUploadDone: (file) => {
+            console.log(file.filesUploaded[0].filename);
+            console.log(file.filesUploaded[0].url);
+            console.log(file.filesUploaded[0].size);
+        }
+    };
+
+    client.picker(options).open();
+
+</script>

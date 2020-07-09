@@ -24,9 +24,18 @@ app.set("view engine", "handlebars");
 require("./routes/api-routes.js")(app);
 require("./routes/view-routes.js")(app);
 
+// filestack picker
+const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+const client = require('filestack-js').init(API_KEY);
+
 // start the server
-db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
-        console.log("App listening at http://localhost:" + PORT);
-    });
+app.listen(PORT, function () {
+    console.log("App listening at http://localhost:" + PORT);
 });
+
+// start the server
+// db.sequelize.sync({ force: true }).then(function () {
+//     app.listen(PORT, function () {
+//         console.log("App listening at http://localhost:" + PORT);
+//     });
+// });
