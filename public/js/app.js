@@ -12,6 +12,13 @@ function initMap() {
     zoom: 12,
   });
   // Example Marker
+  
+  $.ajax("/", {
+    method: "GET",
+  }).then(function(res) {
+    console.log("success!")
+  })
+
   var marker = new google.maps.Marker({ position: uluru, map: map });
 }
 $(document).ready(function () {
