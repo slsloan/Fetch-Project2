@@ -78,6 +78,12 @@ function showCurrentProfile(profile) {
   $("#cur_dog_breed").text(profile.dog_breed)
   $("#cur_fixed").text(profile.fixed)
   $("#cur_about_your_dog").text(profile.about_your_dog)
+  $("#cur_education").text(profile.education)
+  $("#cur_playful").text(profile.playful)
+  $("#cur_terrain").text(profile.terrain)
+  $("#cur_pace").text(profile.pace)
+  $("#cur_distance").text(profile.distance)
+  $("#cur_c_or_a").text(profile.c_or_a)
 }
 $("#logoutbutton").on("click", () => {
 

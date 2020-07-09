@@ -176,41 +176,92 @@
         <form id="second_stage_form" class="row">
             <div class="input-field col m6 l3">
                 <select id="dog_gender" name="dog_gender">
-                    <option value="" selected>Dog Gender</option>
+                    <option value="What is your dogs gender?" disabled selected>What is your dogs gender?</option>
                     <option value="male">male</option>
                     <option value="Female"> Female</option>
                     <option value="Chose not to specify">Chose not to specify</option>
                 </select>
-                <label>Materialize Select</label>
+                <label>What is your dogs gender?</label>
             </div>
 
             <div class="input-field col m6 l3">
-                <select if="fixed" name="fixed">
-                    <option value="" selected>Is your dog fixed?</option>
-                    <option value="1">Yes</option>
-                    <option value="2">No</option>
+                <select id="fixed" name="fixed">
+                    <option value="#" disabled selected>Is your dog fixed?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
-                <label>Materialize Select</label>
+                <label>Is your dog fixed?</label>
             </div>
 
             <div class="input-field col m6 l3">
-                <select>
-                    <option value="" selected>What level of education</option>
-                    <option value="1">House Trained</option>
-                    <option value="2">Some Tricks</option>
-                    <option value="3">Graduated from a puppy academy</option>
+                <select id="education" name="education">
+                    <option value="What level of education" disabled selected>What level of education</option>
+                    <option value="House Trained">House Trained</option>
+                    <option value="Some Tricks">Some Tricks</option>
+                    <option value="Graduated from a puppy academy">Graduated from a puppy academy</option>
                 </select>
             </div>
+
             <div class="input-field col m6 l3">
-                <select>
-                    <option value="" selected>How does your dog interact with other dogs?
+                <select id="playful" name="playful">
+                    <option value="" disabled selected>How does your dog interact with other dogs?
                     </option>
                     <option value="Playful">Playful</option>
                     <option value="Weiry at first but after getting to know a dog will become friendly.">Weiry at first
                         but after getting to know a dog will become friendly.</option>
                     <option value="Does not like dogs.">Does not like dogs.</option>
                 </select>
-                <label>Materialize Select</label>
+                <label>How does your dog interact with other dogs?</label>
+            </div>
+
+            <!-- second row of tbe second stage -->
+
+            <div class="input-field col m6 l3">
+                <select id="terrain" name="terrain">
+                    <option value=disabled select"where are you comfortable? " disabled selected>Where are you comfortable?</option>
+</option>
+                    <option value=" Mostly used to city streets">Mostly used to city streets</option>
+                    <option value="Sub urban pup">suburban pup</option>
+                    <option value="Park pupper"> park pupper</option>
+                    <option value="comfortable with long hikes and trails">comfortable with long hikes and trails
+                    </option>
+                </select>
+                <label>where are you comfortable?</label>
+            </div>
+
+            <div class="input-field col m6 l3">
+                <select id="pace" name="pace">
+                    <option value="" disabled selected>Pace
+                    </option>
+                    <option value="Slow pace, bit of a sniffer">Slow pace, bit of a sniffer</option>
+                    <option value="normal walking speed">normal walking speed</option>
+                    <option value="fast paced.">fast paced.</option>
+                    <option value="A dog with places to be">A dog with places to be</option>
+                </select>
+                <label>How fast is your dog?</label>
+            </div>
+
+            <div class="input-field col m6 l3">
+                <select id="distance" name="distance">
+                    <option value="How far does your dog like to walk" disabled selected>How far does your dog like to
+                        walk</option>
+                    <option value="1 to 2 miles">1 to 2 miles</option>
+                    <option value="3 to 4 miles">3 to 4 miles</option>
+                    <option value="5 or more miles">5 or more miles</option>
+                </select>
+            </div>
+
+            <div class="input-field col m6 l3">
+                <select id="c_or_a" name="c_or_a">
+                    <option value="" disabled selected>Children or animals?
+                    </option>
+                    <option value="likes children and animals">likes children and animals</option>
+                    <option value="Likes Children">likes children</option>
+                    <option value="likes other kinds of anmials"> likes other kinds of animals.</option>
+                    <option value="Does not like children and animals">Does not like children and animals</option>
+
+                </select>
+                <label>children or animals?</label>
             </div>
 
 
@@ -250,46 +301,83 @@
                     <div class="card-content">
                         <div class="card_info">
                             <div>
-                                dog name
+                                dog first name
                                 <div id="cur_dog_name"> </div>
 
                             </div>
                             <div>
-                                dog name
+                                dog last name
                                 <div id="cur_dog_last"> </div>
 
                             </div>
                             <div>
-                                dog name
+                                dog's user name
                                 <div id="cur_scree_name"> </div>
 
                             </div>
                             <div>
-                                dog name
+                                dog breed
                                 <div id="cur_dog_breed"> </div>
 
                             </div>
                             <div>
-                                dog name
+                                your email
                                 <div id="cur_email"> </div>
 
                             </div>
                             <div>
-                                dog name
+                                dog Gender
                                 <div id="cur_dog_gender"> </div>
 
                             </div>
-                            <div>
-                                dog name
-                                <div id="cur_about_your_dog"> </div>
 
-                            </div>
                             <div>
                                 fixed
                                 <div id="cur_fixed"> </div>
                             </div>
+
+                            <div>
+                                education
+                                <div id="cur_education"> </div>
+
+                            </div>
+
+                            <div>
+                                Is your dog playful?
+                                <div id="cur_playful"> </div>
+
+                            </div>
+                            <div>
+                                Is your dog playful?
+                                <div id="terrain"> </div>
+
+                            </div>
+                            <div>
+                                Is your dog playful?
+                                <div id="cur_pace"> </div>
+
+                            </div>
+                            <div>
+                                Is your dog playful?
+                                <div id="cur_distance"> </div>
+
+                            </div>
+                            <div>
+                                Is your dog playful?
+                                <div id="cur_c_or_a"> </div>
+
+                            </div>
+
+                            <div>
+                                About your dog
+                                <div id="cur_about_your_dog"> </div>
+
+                            </div>
+
                         </div>
                     </div>
+
+
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
