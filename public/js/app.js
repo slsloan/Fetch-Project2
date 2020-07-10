@@ -46,9 +46,20 @@ $(document).ready(function () {
 $("#loginform").on("submit", function (event) {
   console.log("working?")
   event.preventDefault()
-  const data = $(this).serializeArray()
-  console.log(data)
-  showCurrentProfile()
+  const data = new FormData(this)
+  $.ajax("/api/login", {
+    method: "post",
+    processData: false,
+    contentType: false,
+    data
+
+  }).done((profile) => {
+    console.log(profile)
+    showCurrentProfile(profile)
+  }).fail((response) => {
+    console.log(response)
+  })
+
 
 
 
@@ -65,20 +76,63 @@ $("#new_account_form").on("submit", function (event) {
   return (false)
 })
 
-$("#second_stage_form").on("submit", function (event) {
+//dummy image will need if the image is raw
+function readImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = reject
+    reader.onload = resolve
+    reader.readAsDataURL(file)
+  })
+}
+
+//SECOND STAGE
+$("#second_stage_form").on("submit", async function (event) {
   event.preventDefault()
   const data = {
     ...accountData,
 
-    ...formToObject(this), image: this.image.files
+    ...formToObject(this), image: this.image.files[0]
   }
   data.fixed = Boolean(parseInt(data.fixed))
+  if (data.image) userImage = await readImage(data.image).then((event) => {
+    return event.target.result
+
+  })
+
+
 
   console.log(data)
   if (inputMap.UserLocation) {
 
     data.location = inputMap.UserLocation
+    const form = new FormData()
+    Object.entries(data).forEach(element => {
+      form.append(element[0], element[1])
+    });
+    $.ajax("/api", {
+      method: "post",
+      data: form,
+      processData: false,
+      contentType: false,
+
+
+    }
+    ).done((data) => {
+      console.log(data)
+
+
+    }).fail((fail) => {
+      console.log(fail)
+
+    })
     showCurrentProfile(data)
+    $.get("/api").done((fail) => {
+      console.log(fail)
+      renderMatchList(fail)
+    }).fail((data) => {
+      console.log(data)
+    })
 
   }
   else {
@@ -108,7 +162,7 @@ function showCurrentProfile(profile) {
   $('.profile-tabs').tabs("select", "current_profile");
   $("a[href='#profile']").text("profile")
   $("#logoutbutton").css("display", "")
-  $("#cur_dog_name").text(profile.dog_name)
+  $("#cur_name").text(profile.name)
   $("#cur_gender").text(profile.gender)
   $("#breed").text(profile.breed)
   $("#cur_fixed").text(profile.fixed)
@@ -121,6 +175,10 @@ function showCurrentProfile(profile) {
   $("#cur_c_or_a").text(profile.c_or_a)
   $("#cur_age").text(profile.age)
   $("#cur_location").text(profile.location)
+
+  //dummy image info (profile. image)
+  $("#cur_image").attr("src", userImage)
+
 
 }
 $("#logoutbutton").on("click", () => {
