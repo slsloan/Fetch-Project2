@@ -139,15 +139,26 @@
                         <input placeholder="Fido" id="screen_name" name="screen_name" type="text" class="validate">
                         <label for="screen_name">Screen name</label>
                     </div>
+
+
+
+                    <div class="col s12 "></div>
+                    <div class="input-field col s6">
+                        <input placeholder="age" id="age" name="age" type="number" min="0" class="validate">
+                        <label for="age">age</label>
+                    </div>
+
+
+
                     <div class="input-field col m6">
-                        <select id="dog_breed" name="dog_breed">
+                        <select id="breed" name="breed">
                             <option value="" selected>Dog Breed
                             </option>
                             <option value="1">Great Dane</option>
                             <option value="2">Poodle.</option>
                             <option value="3">cat.</option>
                         </select>
-                        <label for="dog_breed">Dog Breed</label>
+                        <label for="breed">Dog Breed</label>
                     </div>
                 </div>
 
@@ -175,7 +186,7 @@
     <div id="second_stage">
         <form id="second_stage_form" class="row">
             <div class="input-field col m6 l3">
-                <select id="dog_gender" name="dog_gender">
+                <select id="gender" name="gender">
                     <option value="What is your dogs gender?" disabled selected>What is your dogs gender?</option>
                     <option value="male">male</option>
                     <option value="Female"> Female</option>
@@ -187,8 +198,8 @@
             <div class="input-field col m6 l3">
                 <select id="fixed" name="fixed">
                     <option value="#" disabled selected>Is your dog fixed?</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
                 </select>
                 <label>Is your dog fixed?</label>
             </div>
@@ -269,11 +280,23 @@
             <div class="row">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="about_your_dog" name="about_your_dog" class="materialize-textarea"></textarea>
-                        <label for="about_your_dog">Textarea</label>
+                        <textarea id="interests" name="interests" class="materialize-textarea"></textarea>
+                        <label for="interests">Textarea</label>
                     </div>
                 </div>
             </div>
+
+
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input name="image" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+
 
             <div class="col s12 m6 offset-s0 offset-l3">
 
@@ -300,6 +323,14 @@
                     </div>
                     <div class="card-content">
                         <div class="card_info">
+
+                            <div>
+                                Location
+                                <div id="cur_location"> </div>
+
+                            </div>
+
+
                             <div>
                                 dog first name
                                 <div id="cur_dog_name"> </div>
@@ -317,7 +348,7 @@
                             </div>
                             <div>
                                 dog breed
-                                <div id="cur_dog_breed"> </div>
+                                <div id="breed"> </div>
 
                             </div>
                             <div>
@@ -327,7 +358,13 @@
                             </div>
                             <div>
                                 dog Gender
-                                <div id="cur_dog_gender"> </div>
+                                <div id="cur_gender"> </div>
+
+                            </div>
+
+                            <div>
+                                Dogs Age?
+                                <div id="cur_age"> </div>
 
                             </div>
 
@@ -370,7 +407,7 @@
 
                             <div>
                                 About your dog
-                                <div id="cur_about_your_dog"> </div>
+                                <div id="cur_interests"> </div>
 
                             </div>
 
@@ -385,5 +422,9 @@
             </div>
         </div>
     </div>
+</div>
+<div id="match">
+
+
 </div>
 </div>
