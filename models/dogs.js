@@ -1,9 +1,12 @@
 module.exports = function (sequelize, DataTypes) {
-    var Dog = sequelize.define("Post", {
-        title: DataTypes.STRING,
-        body: DataTypes.TEXT,
-        image: DataTypes.STRING
+    const Dogs = sequelize.define("Dogs", {
+        name: DataTypes.STRING,
+        breed: DataTypes.STRING,
+        gender: DataTypes.STRING,
+        location_longitutde: DataTypes.DECIMAL,
+        location_latitude: DataTypes.DECIMAL,
+        profile_url: DataTypes.STRING
     });
 
-    return Dog;
+    return Dogs;
 };
