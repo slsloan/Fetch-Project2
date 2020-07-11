@@ -5,10 +5,10 @@
 #inputMap {
   height: 60vh;
 }
-.tabs{
-background-color: transparent !important ;
-height: 100% !important;
-flex-direction: column;
+.tabs {
+  background-color: transparent !important ;
+  height: 100% !important;
+  flex-direction: column;
 }
 .sidenav .tabs .tab {
   display: block !important;
@@ -27,12 +27,11 @@ flex-direction: column;
   background-color: rgba(0, 178, 181, 0.2) !important;
 }
 
-#logoutbutton{
+#logoutbutton {
   position: fixed;
   top: 40px;
   right: 5px;
 }
-
 
 /* Optional: Makes the map fill the window. */
 html,
@@ -44,13 +43,14 @@ body {
 
 /* css stuff */
 body {
-    margin: 40px 0;
+  margin: 40px 0;
 }
 
 .card {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
-#content:first-child {
-  text-align: center;
+.row {
+  width: auto;
+  height: auto;
 }
