@@ -68,12 +68,48 @@ $("#loginform").on("submit", function (event) {
 let accountData
 $("#new_account_form").on("submit", function (event) {
   event.preventDefault()
-  accountData = formToObject(this)
+  const data = formToObject(this)
   // profileTabs.select("second_stage")
-  accountData.age = parseInt(accountData.age)
+  data.age = parseInt(data.age)
+  data = {
+    ...data,
+
+    ...formToObject(this), image: this.image.files[0]
+  }
+  data.fixed = Boolean(parseInt(data.fixed))
+  if (data.image) userImage = await readImage(data.image).then((event) => {
+    return event.target.result
+
+  })
+
+
+
+  console.log(data)
+
+  data.location = inputMap.UserLocation
   $('.profile-tabs').tabs("select", "second_stage");
+  const form = new FormData()
+  Object.entries(data).forEach(element => {
+    form.append(element[0], element[1])
+  });
+  $.ajax("/api", {
+    method: "post",
+    data,
+
+
+  }
+
+  ).done((data) => {
+    console.log(data)
+    window.location.href = "/dogs"
+
+  }).fail((fail) => {
+    console.log(fail)
+
+  })
   $('.profile-tabs').css("display", "none")
   return (false)
+
 })
 
 //dummy image will need if the image is raw
@@ -89,52 +125,17 @@ function readImage(file) {
 //SECOND STAGE
 $("#second_stage_form").on("submit", async function (event) {
   event.preventDefault()
-  const data = {
-    ...accountData,
 
-    ...formToObject(this), image: this.image.files[0]
-  }
-  data.fixed = Boolean(parseInt(data.fixed))
-  if (data.image) userImage = await readImage(data.image).then((event) => {
-    return event.target.result
 
+  showCurrentProfile(data)
+  $.get("/api").done((fail) => {
+    console.log(fail)
+    renderMatchList(fail)
+  }).fail((data) => {
+    console.log(data)
   })
 
-
-
-  console.log(data)
-  if (inputMap.UserLocation) {
-
-    data.location = inputMap.UserLocation
-    const form = new FormData()
-    Object.entries(data).forEach(element => {
-      form.append(element[0], element[1])
-    });
-    $.ajax("/api", {
-      method: "post",
-      data: form,
-      processData: false,
-      contentType: false,
-
-
-    }
-    ).done((data) => {
-      console.log(data)
-
-
-    }).fail((fail) => {
-      console.log(fail)
-
-    })
-    showCurrentProfile(data)
-    $.get("/api").done((fail) => {
-      console.log(fail)
-      renderMatchList(fail)
-    }).fail((data) => {
-      console.log(data)
-    })
-
-  }
+}
   else {
     alert("user location required")
   }

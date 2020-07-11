@@ -15,8 +15,8 @@ $(function () {
             data: payload
         }).then(() => {
             // reset form inputs
-            $("#firstName").val("")
-            $("#lastName").val("")
+            $("#dog_name").val("")
+            $("dog_last_name").val("")
             $("#breed").val("")
             $("#age").val("")
             $("#gender").val("")
@@ -33,11 +33,9 @@ $(function () {
             method: "GET",
             url: "/api"
         }).then(dogs => {
-            console.log(dogs)
 
             // append new node for each dog
             dogs.forEach(dog => {
-                console.log(dog)
                 // destructure dog
                 const {
                     first_name,
@@ -46,8 +44,41 @@ $(function () {
                     age,
                     gender,
                     fixed,
-                    interests
+                    interests,
+                    lat,
+                    long
                 } = dog
+
+                var contentString =
+                    '<div id="content">' +
+                    '<img src="' +
+                    'https://placehold.it/300x250"' +
+                    'width="300" height="250">' +
+                    '<h1 id="title" style="font-size: 1.5rem;">' +
+                    `${first_name}, ${last_name}` +
+                    "</h1>" +
+                    '<p id="body">' +
+                    `<h5 class="card-title"></h5>
+                    <p class="card-text">Breed: ${breed}</p>
+                    <p class="card-text">Age: ${age}</p>
+                    <p class="card-text">Gender: ${gender}</p>
+                    <p class="card-text">Fixed: ${fixed}</p>
+                    <p class="card-text">Interests: ${interests}</p>`
+                "</p>" +
+                    "</div>";
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                });
+
+                var marker = new google.maps.Marker({
+                    position: { lat, lng: long },
+                    map: map,
+                    title: "Fetch - Find Your Dogs Match",
+                });
+                marker.addListener("click", function () {
+                    infowindow.open(map, marker);
+                });
 
                 // format dog as bootstrap card
                 const card = `
@@ -64,7 +95,6 @@ $(function () {
                         </div>
                     </div>
                 `
-                console.log(card)
 
                 // append card to dom
                 $("#dogProfiles").append(card)
@@ -73,59 +103,55 @@ $(function () {
     }
 
     // handle change event for my first name input
-    $("#firstName").on("change", event => {
+    $("#dog_name").on("change", event => {
         // destructure event
         first_name = event.target.value
 
-        console.log(first_name)
     })
     // handle change event for my last name input
-    $("#lastName").on("change", event => {
+    $("dog_last_name").on("change", event => {
         // destructure event
         last_name = event.target.value
 
-        console.log(last_name)
     })
     // handle change event for my breed input
     $("#breed").on("change", event => {
         // destructure event
         breed = event.target.value
 
-        console.log(breed)
     })
     // handle change event for my age input
     $("#age").on("change", event => {
         // destructure event
         age = event.target.value
 
-        console.log(age)
     })
     // handle change event for my gender input
     $("#gender").on("change", event => {
         // destructure event
         gender = event.target.value
 
-        console.log(gender)
     })
     // handle change event for my fixed input
     $("#fixed").on("change", event => {
         // destructure event
-        fixed = event.target.value
+        fixed = parseFloat(event.target.value)
 
-        console.log(fixed)
     })
     // handle change event for my interests input
     $("#interests").on("change", event => {
         // destructure event
         interests = event.target.value
 
-        console.log(interests)
     })
 
     // handle submit event
     $("form").on("submit", event => {
         // prevent default
         event.preventDefault()
+
+        if (!inputMap.UserLocation) return alert('loc required;')
+
 
         // create payload
         const payload = {
@@ -135,7 +161,11 @@ $(function () {
             gender: gender,
             age: age,
             fixed: fixed,
-            interests: interests
+            interests: interests,
+            lat: inputMap.UserLocation.lat,
+            long: inputMap.UserLocation.lng
+
+            //image: $("#image")[0].files[0]
         }
 
         // create dog
@@ -145,66 +175,60 @@ $(function () {
     // fetch dogs
     fetchDogs()
 })
+let map
 function initMap() {
-  // $.ajax("/", {
-  //   method: "GET",
-  // }).then(function (res) {
-  //   console.log("success!");
+    // $.ajax("/", {
+    //   method: "GET",
+    // }).then(function (res) {
+    //   console.log("success!");
 
-  //  Example Location
-  var uluru = { lat: 39.7555, lng: -105.2211 };
+    //  Example Location
+    var uluru = { lat: 39.7555, lng: -105.2211 };
 
-  var locations = [
-    { lat: 39.7455, lng: -105.2112 },
-    { lat: 39.7655, lng: -105.2311 },
-    { lat: 39.7555, lng: -105.2211 },
-  ];
-  // Map default View
-  var map = new google.maps.Map(document.getElementById("map"), {
-    center: uluru,
-    zoom: 12,
-  });
-
-  for (var i = 0; i < locations.length; i++) {
-    var contentString =
-      '<div id="content">' +
-      '<img src="' +
-      'https://placehold.it/300x250"' +
-      'width="300" height="250">' +
-      '<h1 id="title" style="font-size: 1.5rem;">' +
-      "Hello Map" +
-      "</h1>" +
-      '<p id="body">' +
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus a ab recusandae perferendis impedit corporis consectetur repellendus nihil maiores velit quis, eligendi incidunt aspernatur, adipisci ipsam numquam earum molestias blanditiis fugiat consequatur officiis necessitatibus quas rerum? Dignissimos dolor quae necessitatibus, mollitia corporis id ipsa ratione? Veniam, consectetur labore! Dolores, quia." +
-      "</p>" +
-      "</div>";
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString,
+    var locations = [
+        { lat: 39.7455, lng: -105.2112 },
+        { lat: 39.7655, lng: -105.2311 },
+        { lat: 39.7555, lng: -105.2211 },
+    ];
+    // Map default View
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: uluru,
+        zoom: 12,
     });
 
-    var marker = new google.maps.Marker({
-      position: { lat: locations[i].lat, lng: locations[i].lng },
-      map: map,
-      title: "Fetch - Find Your Dogs Match",
+
+
+    // end of .then()
+    // });
+}
+let inputMap
+if ($("#inputMap").length) {
+    console.log("working")
+    inputMap = new google.maps.Map(document.getElementById("inputMap"), {
+        center: { lat: 39.7555, lng: -105.2211 },
+        zoom: 12,
     });
-    marker.addListener("click", function () {
-      infowindow.open(map, marker);
-    });
-  }
-  // end of .then()
-  // });
+    // Example Marker
+    ;
+    let userMarker
+    google.maps.event.addListener(inputMap, "click", (event) => {
+        inputMap.UserLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
+        if (!userMarker) {
+            userMarker = new google.maps.Marker({ position: inputMap.UserLocation, map: inputMap })
+
+        }
+        else {
+            userMarker.setPosition(inputMap.UserLocation)
+
+
+        }
+
+
+    })
 }
 $(document).ready(function () {
-  initMap();
-  $(".tabs").tabs();
-  $(".profile-tabs").tabs();
-  $(".sidenav").sidenav();
-});
-$("#loginform").on("submit", function (event) {
-  console.log("working?");
-  event.preventDefault();
-  const data = $(this).serializeArray();
-  console.log(data);
-  return false;
+    initMap();
+    $(".tabs").tabs();
+    $(".profile-tabs").tabs();
+    $(".sidenav").sidenav();
 });
