@@ -5,8 +5,8 @@ module.exports = function (sequelize, DataTypes) {
         last_name: DataTypes.STRING,
         breed: DataTypes.STRING,
         gender: DataTypes.STRING,
-        age: DataTypes.STRING,
-        fixed: DataTypes.STRING,
+        age: DataTypes.INTEGER,
+        fixed: DataTypes.BOOLEAN,
         // location: DataTypes.INTEGER,
         interests: DataTypes.TEXT
     });
