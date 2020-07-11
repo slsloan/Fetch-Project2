@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #map {
     height: 60vh;
@@ -49,3 +50,12 @@
     margin: 0;
     padding: 0;
   }
+=======
+body {
+    margin: 40px 0;
+}
+
+.card {
+    margin: 10px 0;
+}
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1

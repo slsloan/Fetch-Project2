@@ -2,20 +2,32 @@
   "development": {
     "username": "root",
     "password": "password",
+<<<<<<< HEAD
     "database": "database_development",
+=======
+    "database": "dogs_db",
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
+<<<<<<< HEAD
     "password": "password",
+=======
+    "password": null,
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
+<<<<<<< HEAD
     "password": "password",
+=======
+    "password": null,
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"

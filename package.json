@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "Secret-Project-2",
   "version": "1.0.0",
   "description": "Take over the world",
+=======
+  "name": "Fetch-Project-2",
+  "version": "1.0.0",
+  "description": "Fetch! - A Dating App for Dogs! -- Project 2 for DU Coding Bootcamp",
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,12 +16,17 @@
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "git+https://github.com/PaulFidika/Secret-Project-2.git"
+=======
+    "url": "git+https://github.com/slsloan/Fetch-Project-2.git"
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/PaulFidika/Secret-Project-2/issues"
   },
   "homepage": "https://github.com/PaulFidika/Secret-Project-2#readme",
@@ -26,6 +37,16 @@
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.0",
     "sqlite3": "^5.0.0"
+=======
+    "url": "https://github.com/slsloan/Fetch-Project-2/issues"
+  },
+  "homepage": "https://github.com/slsloan/Fetch-Project-2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.0.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.0"
+>>>>>>> 9812736f56639a30c1c8466f4659bb5e4c3a9ed1
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
