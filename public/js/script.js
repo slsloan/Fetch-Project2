@@ -50,17 +50,41 @@ function initMap() {
 }
 
 $(document).ready(function () {
+  // initMap();
+  // $(".tabs").tabs();
+  // $(".profile-tabs").tabs();
+  // $(".sidenav").sidenav();
   $('select').formSelect();
-  initMap();
-  $(".tabs").tabs();
-  $(".profile-tabs").tabs();
-  $(".sidenav").sidenav();
+
+  $("#uploadImage").on("click", function (event) {
+    client.picker(options).open();
+  });
 });
 
 $("#loginform").on("submit", function (event) {
-  console.log("working?");
   event.preventDefault();
   const data = $(this).serializeArray();
   console.log(data);
   return false;
 });
+
+
+// File-stack image upload specifications
+const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+const client = filestack.init(API_KEY);
+const options = {
+  transformations: { // forces users to crop their image into a circle
+    circle: true,
+    force: true
+  },
+  onUploadDone: (file) => {
+    $("#profilePreview").attr("src", file.filesUploaded[0].url);
+    console.log($("#profilePreview"));
+    console.log(file.filesUploaded[0].filename);
+    console.log(file.filesUploaded[0].url);
+    console.log(file.filesUploaded[0].size);
+  }
+};
+
+
+

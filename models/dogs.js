@@ -1,10 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
     const Dogs = sequelize.define("Dogs", {
-        name: DataTypes.STRING,
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         breed: DataTypes.STRING,
         gender: DataTypes.STRING,
-        location_longitutde: DataTypes.DECIMAL,
-        location_latitude: DataTypes.DECIMAL,
+        location_longitutde: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
+        location_latitude: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
         profile_url: DataTypes.STRING
     });
 

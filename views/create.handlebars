@@ -28,13 +28,21 @@ Alright tell us all about your furry little friend!
         </div>
 
         <div class="row">
-            Tell us where to show your dog on the map:<br>
+            Drop a pin to show us where your dog lives:<br>
             <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         </div>
 
         <div class="row">
             Upload a profile pic for your dog:<br>
-            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+            <div class="col s4">
+                <a class="waves-effect waves-light" id="uploadImage" style="width: 100%; height: 100%;">
+                    <div class="image-cropper">
+                        <img id="profilePreview" alt="" class="circle responsive-img"
+                            src="https://cdn.filestackcontent.com/UVLL8jDSPGfGTEHWfq7z">
+                    </div>
+                </a>
+            </div>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
