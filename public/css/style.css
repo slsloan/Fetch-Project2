@@ -1,32 +1,26 @@
 #map {
   height: 60vh;
 }
-.tabs{
-background-color: transparent !important ;
-height: 100% !important;
-}
-.sidenav .tabs .tab{
-display: block !important;
-
-}
-.tabs .tab{
+.tabs {
+  background-color: transparent !important ;
   height: 100% !important;
 }
-.tabs .tab a{
-color : black !important;
-padding-top: 10px !important;
-
+.sidenav .tabs .tab {
+  display: block !important;
 }
-.tabs .indicator{
-
+.tabs .tab {
+  height: 100% !important;
+}
+.tabs .tab a {
+  color: black !important;
+  padding-top: 10px !important;
+}
+.tabs .indicator {
   background-color: green !important;
 }
-.tabs .tab a:focus.active{
-background-color: rgba(0,178,181,0.2) !important;
-
+.tabs .tab a:focus.active {
+  background-color: rgba(0, 178, 181, 0.2) !important;
 }
-
-
 
 /* Optional: Makes the map fill the window. */
 html,
@@ -34,4 +28,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#content:first-child {
+  text-align: center;
 }
