@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // define static directory
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 
 // setup handelbars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -24,9 +24,17 @@ app.set("view engine", "handlebars");
 require("./routes/api-routes.js")(app);
 require("./routes/view-routes.js")(app);
 
-// start the server
-db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
-        console.log("App listening at http://localhost:" + PORT);
-    });
-});
+// connect to the database and start the server
+async function startServer() {
+    try {
+        await db.sequelize.authenticate();
+        app.listen(PORT, function () {
+            console.log("App listening at http://localhost:" + PORT);
+        });
+    } catch (error) {
+        console.error('Unable to connect to the database: ', error);
+    }
+}
+startServer();
+
+// db.sequelize.sync({ force: true }) -- if you want to delete and rebuild the table from scratch

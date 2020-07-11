@@ -48,12 +48,15 @@ function initMap() {
   // end of .then()
   // });
 }
+
 $(document).ready(function () {
+  $('select').formSelect();
   initMap();
   $(".tabs").tabs();
   $(".profile-tabs").tabs();
   $(".sidenav").sidenav();
 });
+
 $("#loginform").on("submit", function (event) {
   console.log("working?");
   event.preventDefault();
