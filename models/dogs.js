@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
         gender: DataTypes.STRING,
         age: DataTypes.INTEGER,
         fixed: DataTypes.BOOLEAN,
-        // location: DataTypes.INTEGER,
+        latitude: DataTypes.INTEGER,
+        longitude: DataTypes.INTEGER,
         interests: DataTypes.TEXT
     });
     return Dog;
