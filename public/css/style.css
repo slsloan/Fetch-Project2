@@ -10,25 +10,21 @@ background-color: transparent !important ;
 height: 100% !important;
 flex-direction: column;
 }
-.sidenav .tabs .tab{
-display: block !important;
-
+.sidenav .tabs .tab {
+  display: block !important;
 }
-.tabs .tab{
+.tabs .tab {
   height: 100% !important;
 }
-.tabs .tab a{
-color : black !important;
-padding-top: 10px !important;
-
+.tabs .tab a {
+  color: black !important;
+  padding-top: 10px !important;
 }
-.tabs .indicator{
-
+.tabs .indicator {
   background-color: green !important;
 }
-.tabs .tab a:focus.active{
-background-color: rgba(0,178,181,0.2) !important;
-
+.tabs .tab a:focus.active {
+  background-color: rgba(0, 178, 181, 0.2) !important;
 }
 
 #logoutbutton{
@@ -53,4 +49,8 @@ body {
 
 .card {
     margin: 10px 0;
+}
+
+#content:first-child {
+  text-align: center;
 }
