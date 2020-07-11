@@ -1,12 +1,12 @@
-// import dependencies
-var express = require('express');
+// import dependencies 
+var express = require("express");
 var exphbs = require("express-handlebars");
 
 // setup the express app
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// require models for syncing
+// Require our models for syncing 
 var db = require("./models");
 
 // configure middleware

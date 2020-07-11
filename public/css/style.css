@@ -37,9 +37,6 @@ background-color: rgba(0,178,181,0.2) !important;
   right: 5px;
 }
 
-}
-
-
 
 /* Optional: Makes the map fill the window. */
 html,
@@ -47,4 +44,13 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* css stuff */
+body {
+    margin: 40px 0;
+}
+
+.card {
+    margin: 10px 0;
 }
