@@ -35,6 +35,51 @@ $(function () {
         }).then(dogs => {
             console.log(dogs)
 
+            var uluru = { lat: 39.7555, lng: -105.2211 };
+
+    var locations = [
+        { lat: 39.7455, lng: -105.2112 },
+        { lat: 39.7655, lng: -105.2311 },
+        { lat: 39.7555, lng: -105.2211 },
+    ];
+    // Map default View
+    var map = new google.maps.Map(document.getElementById("map"), {
+        center: uluru,
+        zoom: 12,
+    });
+
+    for (var i = 0; i < locations.length; i++) {
+        var contentString = `
+        <div id="content">
+        <div>
+          <div class="card">
+            <div class="card-image">
+              <img src="http://placehold.it/150x150">
+              <span class="card-title">Card Title</span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      `
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+        });
+
+        var marker = new google.maps.Marker({
+            position: { lat: locations[i].lat, lng: locations[i].lng },
+            map: map,
+            title: "Fetch - Find Your Dogs Match",
+        });
+        marker.addListener("click", function () {
+            infowindow.open(map, marker);
+        });
+    }
+
             // append new node for each dog
             dogs.forEach(dog => {
                 console.log(dog)
@@ -145,60 +190,7 @@ $(function () {
     // fetch dogs
     fetchDogs()
 })
-function initMap() {
-    // $.ajax("/", {
-    //   method: "GET",
-    // }).then(function (res) {
-    //   console.log("success!");
 
-    //  Example Location
-    var uluru = { lat: 39.7555, lng: -105.2211 };
-
-    var locations = [
-        { lat: 39.7455, lng: -105.2112 },
-        { lat: 39.7655, lng: -105.2311 },
-        { lat: 39.7555, lng: -105.2211 },
-    ];
-    // Map default View
-    var map = new google.maps.Map(document.getElementById("map"), {
-        center: uluru,
-        zoom: 12,
-    });
-
-    for (var i = 0; i < locations.length; i++) {
-        var contentString = `
-        <div id="content">
-        <div>
-          <div class="card">
-            <div class="card-image">
-              <img src="http://placehold.it/150x150">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      `
-
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString,
-        });
-
-        var marker = new google.maps.Marker({
-            position: { lat: locations[i].lat, lng: locations[i].lng },
-            map: map,
-            title: "Fetch - Find Your Dogs Match",
-        });
-        marker.addListener("click", function () {
-            infowindow.open(map, marker);
-        });
-    }
-    // end of .then()
-    // });
-}
 $(document).ready(function () {
     initMap();
     $(".tabs").tabs();
