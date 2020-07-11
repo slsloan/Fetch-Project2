@@ -1,4 +1,5 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded
+let markers = []
 $(function () {
     let first_name = ''
     let last_name = ''
@@ -24,7 +25,8 @@ $(function () {
             $("#interests").val("")
 
             // navigate to "/dogs"
-            window.location.href = "/dogs"
+            $('.tabs').tabs('select', 'index');
+            fetchDogs()
         }).catch(err => console.log(err))
     }
 
@@ -33,7 +35,8 @@ $(function () {
             method: "GET",
             url: "/api"
         }).then(dogs => {
-
+            markers.forEach((marker) => marker.setMap(null))
+            markers = []
             // append new node for each dog
             dogs.forEach(dog => {
                 // destructure dog
@@ -75,29 +78,15 @@ $(function () {
                     position: { lat, lng: long },
                     map: map,
                     title: "Fetch - Find Your Dogs Match",
+
                 });
+                markers.push(marker)
                 marker.addListener("click", function () {
                     infowindow.open(map, marker);
                 });
 
                 // format dog as bootstrap card
-                const card = `
-                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">${first_name}, ${last_name}</h5>
-                                <p class="card-text">Breed: ${breed}</p>
-                                <p class="card-text">Age: ${age}</p>
-                                <p class="card-text">Gender: ${gender}</p>
-                                <p class="card-text">Fixed: ${fixed}</p>
-                                <p class="card-text">Interests: ${interests}</p>
-                            </div>
-                        </div>
-                    </div>
-                `
 
-                // append card to dom
-                $("#dogProfiles").append(card)
             })
         }).catch(err => console.log(err))
     }
@@ -226,9 +215,10 @@ if ($("#inputMap").length) {
 
     })
 }
+let mainTabs
 $(document).ready(function () {
     initMap();
-    $(".tabs").tabs();
-    $(".profile-tabs").tabs();
+    mainTabs = $(".tabs").tabs();
+
     $(".sidenav").sidenav();
 });
