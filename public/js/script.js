@@ -75,49 +75,49 @@ $(function () {
     // handle change event for my first name input
     $("#firstName").on("change", event => {
         // destructure event
-        const first_name = event.target.value
+        first_name = event.target.value
 
         console.log(first_name)
     })
     // handle change event for my last name input
     $("#lastName").on("change", event => {
         // destructure event
-        const last_name = event.target.value
+        last_name = event.target.value
 
         console.log(last_name)
     })
     // handle change event for my breed input
     $("#breed").on("change", event => {
         // destructure event
-        const breed = event.target.value
+        breed = event.target.value
 
         console.log(breed)
     })
     // handle change event for my age input
     $("#age").on("change", event => {
         // destructure event
-        const age = event.target.value
+        age = event.target.value
 
         console.log(age)
     })
     // handle change event for my gender input
     $("#gender").on("change", event => {
         // destructure event
-        const gender = event.target.value
+        gender = event.target.value
 
         console.log(gender)
     })
     // handle change event for my fixed input
     $("#fixed").on("change", event => {
         // destructure event
-        const fixed = event.target.value
+        fixed = event.target.value
 
         console.log(fixed)
     })
     // handle change event for my interests input
     $("#interests").on("change", event => {
         // destructure event
-        const interests = event.target.value
+        interests = event.target.value
 
         console.log(interests)
     })
