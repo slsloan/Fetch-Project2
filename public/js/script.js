@@ -55,11 +55,11 @@ $(function () {
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">${first_name}, ${last_name}</h5>
-                                <p class="card-text">${breed}</p>
-                                <p class="card-text">${age}</p>
-                                <p class="card-text">${gender}</p>
-                                <p class="card-text">${fixed}</p>
-                                <p class="card-text">${interests}</p>
+                                <p class="card-text">Breed: ${breed}</p>
+                                <p class="card-text">Age: ${age}</p>
+                                <p class="card-text">Gender: ${gender}</p>
+                                <p class="card-text">Fixed: ${fixed}</p>
+                                <p class="card-text">Interests: ${interests}</p>
                             </div>
                         </div>
                     </div>
