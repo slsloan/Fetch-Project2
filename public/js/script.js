@@ -84,7 +84,6 @@ $(function () {
                 });
 
                 // format dog as bootstrap card
-
             })
         }).catch(err => console.log(err))
     }
@@ -262,3 +261,9 @@ function showCurrentProfile(profile) {
     const dog = allDogs.find((dog) => id == dog.id)
     showCurrentProfile(dog)
 }
+
+// form select options 
+$(document).ready(function () {
+    $('select').formSelect()
+})
+

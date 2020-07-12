@@ -1,62 +1,8 @@
-<!-- header -->
-<div class="row">
-    <div class="navbar-fixed1">
-        <nav class="nav-wrapper grey">
-
-
-
-
-            <a href="#" class="brand-logo center">Fetch</a>
-            <a href="#" class="sidenav-trigger" data-target="mobile-links">
-                <i class="material-icons">menu</i>
-            </a>
-
-            <ul class="tabs">
-
-                <li class="tab  left hide-on-med-and-down s3 l6"><a class="active" href="#index">Home</a></li>
-
-
-
-                <li style=" display: none" class=" tab "><a href="#profile">profile</a>
-                </li>
-                <li class="tab right hide-on-med-and-down s3 l6"><a href="#profile_log_in">Log in</a></li>
-
-            </ul>
-
-
-        </nav>
-    </div>
-</div>
-
-<!-- log out -->
-<button style="display: none;" class="btn" id="logoutbutton">
-    log out
-</button>
-
-
-<!-- side bar -->
-<ul class="sidenav" id="mobile-links">
-    <ul class="tabs">
-        <li class="tab "><a href="#profile_log_in">Log in</a></li>
-        <li style=" display: none" class="tab "><a href="#profile">profile</a></li>
-
-
-
-        <li class="tab  "><a class="active" href="#index">Home</a></li>
-    </ul>
-</ul>
-
-
-<div id="index" class="row ">
-
-
-    <div class="col s12 m6 offset-s0 offset-l3">
-
-        <div class="card-panel">
-
-            <div id="map"></div>
+<div class="background">
+    <div class="row">
+        <div>
+            <img id="logo" src="./css/fetch_logo2.png" width="180" height="90" alt="logo for fetch">
         </div>
-
     </div>
 </div>
 
@@ -149,83 +95,6 @@
 
 
 
-        <div class="row">
-            <form id="new_account_form" class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input placeholder="Scooby" id="dog_name" name="dog_name" type="text" class="validate">
-                        <label for="dog_name">Dog's name</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input placeholder="Doo" id="dog_last_name" name="dog_last_name" type="text" class="validate">
-                        <label for="dog_last_name">Dog last Name</label>
-                    </div>
-                </div>
-                <div class="row">
-
-
-
-
-                    <div class="col s12 "></div>
-                    <div class="input-field col s6">
-                        <input placeholder="age" id="age" name="age" type="number" min="0" class="validate">
-                        <label for="age">age</label>
-                    </div>
-
-
-
-                    <div class="input-field col m6">
-                        <select id="breed" name="breed">
-                            <option value="" selected>Dog Breed
-                            </option>
-                            <option value="1">Great Dane</option>
-                            <option value="2">Poodle.</option>
-                            <option value="3">cat.</option>
-                        </select>
-                        <label for="breed">Dog Breed</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="email" name="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="new_password" name="new_password" type="password" class="validate">
-                        <label for="new_password">Password</label>
-                    </div>
-                </div>
-
-
-
-        </div>
-        <div class="input-field col m6 l3">
-            <select id="gender" name="gender">
-                <option value="What is your dogs gender?" disabled selected>What is your dogs gender?</option>
-                <option value="male">male</option>
-                <option value="Female"> Female</option>
-                <option value="Chose not to specify">Chose not to specify</option>
-            </select>
-            <label>What is your dogs gender?</label>
-        </div>
-
-        <div class="input-field col m6 l3">
-            <select id="fixed" name="fixed">
-                <option value="#" disabled selected>Is your dog fixed?</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select>
-            <label>Is your dog fixed?</label>
-        </div>
-
-
-
-
-        <!-- second row of tbe second stage -->
 
 
 
@@ -234,43 +103,93 @@
 
 
         <div class="row">
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="interests" name="interests" class="materialize-textarea"></textarea>
-                    <label for="interests">Textarea</label>
-                </div>
-            </div>
-        </div>
+            <div class="col m6 offset-m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Create your Fetch Profile!</span>
+                        <form>
+                            <div class="row">
+                                <div class="input-field col m6">
+                                    <input placeholder="Scoobert" id="firstName" name="dog_name" type="text"
+                                        class="validate">
+                                    <label for="dog_name">Dog's First Name</label>
+                                </div>
+                                <div class="input-field col m6">
+                                    <input placeholder="Doo" id="lastName" name="dog_last_name" type="text"
+                                        class="validate">
+                                    <label for="dog_last_name">Dog's Last Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col m4">
+                                    <input placeholder="Great Dane" id="breed" type="text" class="validate">
+                                    <label for="dog_breed">Dog's Breed</label>
+                                </div>
+                                <div class="input-field col m4">
+                                    <select id="age">
+                                        <option value="" disabled selected></option>
+                                        <option value="Puppy">Puppy</option>
+                                        <option value="Young Adult">Young Adult</option>
+                                        <option value="Adult">Adult</option>
+                                        <option value="Senior">Senior</option>
+                                    </select>
+                                    <label>Age</label>
+                                </div>
+                                <div class="input-field col m2 s6">
+                                    <select id="gender">
+                                        <option value="" disabled selected></option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <label>Gender</label>
+                                </div>
+                                <div class="input-field col m2 s6">
+                                    <select id="fixed">
+                                        <option value="" disabled selected></option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
 
+                                    </select>
+                                    <label>Fixed?</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col m12">
+                                    <input placeholder="ex. Enjoys long walks on the beach" id="interests" type="text"
+                                        class="validate">
+                                    <label for="dog_interests">Interests:</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                Upload a profile pic for your dog:<br>
 
-        <div class="row">
-            Upload a profile pic for your dog:<br>
+                                <div class="col s4">
+                                    <a class="waves-effect waves-light" id="uploadImage"
+                                        style="width: 100%; height: 100%;">
+                                        <div class="image-cropper">
+                                            <img id="profilePreview" alt="" class="circle responsive-img"
+                                                src="https://cdn.filestackcontent.com/UVLL8jDSPGfGTEHWfq7z">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
 
-            <div class="col s4">
-                <a class="waves-effect waves-light" id="uploadImage" style="width: 100%; height: 100%;">
-                    <div class="image-cropper">
-                        <img id="profilePreview" alt="" class="circle responsive-img"
-                            src="https://cdn.filestackcontent.com/UVLL8jDSPGfGTEHWfq7z">
+                            <div class="card-action">
+                                <button id="button" class="btn waves-effect waves-light btn-large" type="submit"
+                                    name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </a>
+                </div>
+
             </div>
+
+            </form>
         </div>
 
 
-        <div class="col s12 m6 offset-s0 offset-l3">
 
-            <div class="card-panel">
 
-                <div id="inputMap"></div>
-            </div>
-
-        </div>
-        <button class="btn" type="submit">continue creating account
-        </button>
-        </form>
     </div>
-
-
-
-
-</div>
