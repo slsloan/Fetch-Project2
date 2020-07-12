@@ -1,56 +1,35 @@
-#map {
-  height: 60vh;
+.background {
+  background-image: url('background.jpg');
+  background-position: 50% 20%;
+	background-repeat:  no-repeat;
+	background-attachment: fixed;
+	background-size:  cover;
+  background-color: #999;
+  height:100vh;
+}
+#map{
+height: 60vh;
+
 }
 
-#inputMap {
-  height: 60vh;
-}
-.tabs {
-  background-color: transparent !important ;
-  height: 100% !important;
-  flex-direction: column;
-}
-.sidenav .tabs .tab {
-  display: block !important;
-}
-.tabs .tab {
-  height: 100% !important;
-}
-.tabs .tab a {
-  color: black !important;
-  padding-top: 10px !important;
-}
-.tabs .indicator {
-  background-color: green !important;
-}
-.tabs .tab a:focus.active {
-  background-color: rgba(0, 178, 181, 0.2) !important;
+#profile >.row{
+  width: 40vw;
+  float: right;
+
 }
 
-#logoutbutton {
-  position: fixed;
-  top: 40px;
-  right: 5px;
+.form{
+  position: absolute;
+  top: 5vh;
+  right: 0;
+  width: 100vw;
+}
+#logo {
+  margin-top: 2px;
 }
 
-/* Optional: Makes the map fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* css stuff */
-body {
-  margin: 40px 0;
-}
-
-.card {
-  margin: 10px 0;
-}
-
-.row {
-  width: auto;
-  height: auto;
+#button {
+  background-color: #f2c33d;
+  margin-left: -25px;
+  margin-bottom: -10px;
 }

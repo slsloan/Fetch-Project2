@@ -1,6 +1,100 @@
-<div class="row">
-    <div class="col text-right">
-        <a href="/" class="btn btn-primary">All Fetch Matches</a>
+<div class="background">
+
+    <div class="row">
+        <a href="/">
+            <img id="logo" src="./css/fetch_logo2.png" width="180" height="90" alt="logo for fetch">
+        </a>
     </div>
-</div>
-<div class="row" id="dogProfiles"></div>
+    <div class="row">
+        <ul class="tabs" style="display:none">
+            <li class="tab col s3"><a class="active" href="#map-tab">Test 2</a></li>
+            <li class="tab col s3"><a href="#profile">Test 1</a></li>
+        </ul>
+        <div id="map-tab" class="row ">
+
+
+            <div class="col s12 m6 offset-s0 offset-l3">
+
+                <div class="card-panel">
+
+                    <div id="map"></div>
+                </div>
+
+            </div>
+        </div>
+        <div id="profile">
+
+
+
+
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div>
+                            <span id="cur_dog_name" class="card-title">Card Title</span>
+                            <img id="cur_image" width="150px" height="150px" src="/Unknown.jpg">
+
+                        </div>
+                        <div class="card-content">
+                            <div class="card_info">
+
+                                <div>
+                                    Location
+                                    <div id="cur_location"> </div>
+
+                                </div>
+
+
+
+
+                                <div>
+                                    dog breed
+                                    <div id="cur_breed"> </div>
+
+                                </div>
+                                <div>
+                                    your email
+                                    <div id="cur_email"> </div>
+
+                                </div>
+                                <div>
+                                    dog Gender
+                                    <div id="cur_gender"> </div>
+
+                                </div>
+
+                                <div>
+                                    Dogs Age?
+                                    <div id="cur_age"> </div>
+
+                                </div>
+
+                                <div>
+                                    fixed
+                                    <div id="cur_fixed"> </div>
+                                </div>
+
+
+
+
+
+                                <div>
+                                    About your dog
+                                    <div id="cur_interests"> </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div id="map-back" class="card-action">
+                            <a href="#">Back to map</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
