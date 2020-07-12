@@ -51,19 +51,21 @@ $(function () {
 
                 // format dog as bootstrap card
                 const card = `
-                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">${first_name}, ${last_name}</h5>
-                                <p class="card-text">Breed: ${breed}</p>
-                                <p class="card-text">Age: ${age}</p>
-                                <p class="card-text">Gender: ${gender}</p>
-                                <p class="card-text">Fixed: ${fixed}</p>
-                                <p class="card-text">Interests: ${interests}</p>
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title"><b>${first_name} ${last_name}</b></span>
+                                    <p>Age: ${age}</p>
+                                    <p>Breed: ${breed}</p>
+                                    <p>Gender: ${gender}</p>
+                                    <p>Fixed: ${fixed}</p>
+                                    <p>Interests: ${interests}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                `
+                    `
                 console.log(card)
 
                 // append card to dom
@@ -110,7 +112,7 @@ $(function () {
     // handle change event for my fixed input
     $("#fixed").on("change", event => {
         // destructure event
-        fixed = event.target.value
+        fixed = JSON.parse(event.target.value)
 
         console.log(fixed)
     })
@@ -144,71 +146,9 @@ $(function () {
 
     // fetch dogs
     fetchDogs()
+
+    // form select options 
+    $(document).ready(function () {
+        $('select').formSelect()
+    })
 })
-function initMap() {
-    // $.ajax("/", {
-    //   method: "GET",
-    // }).then(function (res) {
-    //   console.log("success!");
-
-    //  Example Location
-    var uluru = { lat: 39.7555, lng: -105.2211 };
-
-    var locations = [
-        { lat: 39.7455, lng: -105.2112 },
-        { lat: 39.7655, lng: -105.2311 },
-        { lat: 39.7555, lng: -105.2211 },
-    ];
-    // Map default View
-    var map = new google.maps.Map(document.getElementById("map"), {
-        center: uluru,
-        zoom: 12,
-    });
-
-    for (var i = 0; i < locations.length; i++) {
-        var contentString = `
-        <div id="content">
-        <div>
-          <div class="card">
-            <div class="card-image">
-              <img src="http://placehold.it/150x150">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      `
-
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString,
-        });
-
-        var marker = new google.maps.Marker({
-            position: { lat: locations[i].lat, lng: locations[i].lng },
-            map: map,
-            title: "Fetch - Find Your Dogs Match",
-        });
-        marker.addListener("click", function () {
-            infowindow.open(map, marker);
-        });
-    }
-    // end of .then()
-    // });
-}
-$(document).ready(function () {
-    initMap();
-    $(".tabs").tabs();
-    $(".profile-tabs").tabs();
-    $(".sidenav").sidenav();
-});
-$("#loginform").on("submit", function (event) {
-    console.log("working?");
-    event.preventDefault();
-    const data = $(this).serializeArray();
-    console.log(data);
-    return false;
-});

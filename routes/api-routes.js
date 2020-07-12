@@ -23,8 +23,8 @@ module.exports = function (app) {
         var gender = req.body.gender;
         var age = req.body.age;
         var fixed = req.body.fixed;
-        var latitude = req.body.latitude;
-        var longitude = req.body.longitude;
+        // var latitude = req.body.latitude;
+        // var longitude = req.body.longitude;
         var interests = req.body.interests;
 
         // create payload
@@ -36,8 +36,8 @@ module.exports = function (app) {
             gender: gender,
             age: age,
             fixed: fixed,
-            latitude: latitude,
-            longitude: longitude,
+            // latitude: latitude,
+            // longitude: longitude,
             interests: interests
         }
 

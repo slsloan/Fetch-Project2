@@ -5,10 +5,10 @@ module.exports = function (sequelize, DataTypes) {
         last_name: DataTypes.STRING,
         breed: DataTypes.STRING,
         gender: DataTypes.STRING,
-        age: DataTypes.INTEGER,
+        age: DataTypes.STRING,
         fixed: DataTypes.BOOLEAN,
-        latitude: DataTypes.INTEGER,
-        longitude: DataTypes.INTEGER,
+        // latitude: DataTypes.INTEGER,
+        // longitude: DataTypes.INTEGER,
         interests: DataTypes.TEXT
     });
     return Dog;
