@@ -1,4 +1,5 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded
+let allDogs = []
 let markers = []
 $(function () {
     let first_name = ''
@@ -35,9 +36,10 @@ $(function () {
             method: "GET",
             url: "/api"
         }).then(dogs => {
+            console.log(dogs)
             markers.forEach((marker) => marker.setMap(null))
             markers = []
-            // append new node for each dog
+            allDogs = dogs// append new node for each dog
             dogs.forEach(dog => {
                 // destructure dog
                 const {
@@ -49,25 +51,21 @@ $(function () {
                     fixed,
                     interests,
                     lat,
-                    long
+                    long,
+                    image,
+                    id,
                 } = dog
 
                 var contentString =
                     '<div id="content">' +
                     '<img src="' +
-                    'https://placehold.it/300x250"' +
-                    'width="300" height="250">' +
-                    '<h1 id="title" style="font-size: 1.5rem;">' +
+                    `${image}  "` +
+                    'width="100" height="75">' +
+                    `<h1 onclick="handleInfoClick(${id})" style="font-size: 1.5rem;">` +
                     `${first_name}, ${last_name}` +
                     "</h1>" +
-                    '<p id="body">' +
-                    `<h5 class="card-title"></h5>
-                    <p class="card-text">Breed: ${breed}</p>
-                    <p class="card-text">Age: ${age}</p>
-                    <p class="card-text">Gender: ${gender}</p>
-                    <p class="card-text">Fixed: ${fixed}</p>
-                    <p class="card-text">Interests: ${interests}</p>`
-                "</p>" +
+
+
                     "</div>";
 
                 var infowindow = new google.maps.InfoWindow({
@@ -138,7 +136,7 @@ $(function () {
     $("form").on("submit", event => {
         // prevent default
         event.preventDefault()
-
+        if (!imageURL) return (alert("image required"))
         if (!inputMap.UserLocation) return alert('loc required;')
 
 
@@ -152,9 +150,9 @@ $(function () {
             fixed: fixed,
             interests: interests,
             lat: inputMap.UserLocation.lat,
-            long: inputMap.UserLocation.lng
+            long: inputMap.UserLocation.lng,
 
-            //image: $("#image")[0].files[0]
+            image: imageURL
         }
 
         // create dog
@@ -222,3 +220,45 @@ $(document).ready(function () {
 
     $(".sidenav").sidenav();
 });
+let imageURL
+const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+const client = filestack.init(API_KEY);
+const options = {
+    transformations: { // forces users to crop their image into a circle
+        circle: true,
+        force: true
+    },
+    onUploadDone: (file) => {
+        $("#profilePreview").attr("src", file.filesUploaded[0].url);
+        console.log($("#profilePreview"));
+        console.log(file.filesUploaded[0].filename);
+        console.log(file.filesUploaded[0].url);
+        imageURL = file.filesUploaded[0].url;
+        console.log(file.filesUploaded[0].size);
+    }
+};
+$("#uploadImage").on("click", () => {
+    client.picker(options).open()
+})
+
+
+
+function showCurrentProfile(profile) {
+    console.log(profile)
+    $('.tabs').tabs("select", "profile");
+    $("#cur_gender").text(profile.gender)
+    $("#breed").text(profile.breed)
+    $("#cur_fixed").text(profile.fixed)
+    $("#cur_interests").text(profile.interests)
+    $("#cur_age").text(profile.age)
+    $("#cur_location").text(profile.lat + " " + profile.long)
+    $("cur_dog_name").text(profile.first_name + " " + profile.last_name)
+
+    //dummy image info (profile. image)
+    $("#cur_image").attr("src", profile.image)
+
+
+} function handleInfoClick(id) {
+    const dog = allDogs.find((dog) => id == dog.id)
+    showCurrentProfile(dog)
+}

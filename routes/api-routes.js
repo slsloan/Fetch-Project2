@@ -16,7 +16,7 @@ module.exports = function (app) {
     // @desc:   Create a new dog profile
     app.post("/api", function (req, res) {
         // destructure request
-        // var image = req.body.image;
+        var image = req.body.image;
         var first_name = req.body.first_name;
         var last_name = req.body.last_name;
         var breed = req.body.breed;
@@ -30,7 +30,7 @@ module.exports = function (app) {
 
         // create payload
         var payload = {
-            // image: image,
+            image: image,
             first_name: first_name,
             last_name: last_name,
             breed: breed,

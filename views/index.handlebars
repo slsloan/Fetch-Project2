@@ -17,7 +17,9 @@
 
 
 
-                <li class="tab right hide-on-med-and-down s3 l6"><a href="#profile">Log in</a></li>
+                <li style=" display: none" class=" tab "><a href="#profile">profile</a>
+                </li>
+                <li class="tab right hide-on-med-and-down s3 l6"><a href="#profile_log_in">Log in</a></li>
 
             </ul>
 
@@ -35,7 +37,8 @@
 <!-- side bar -->
 <ul class="sidenav" id="mobile-links">
     <ul class="tabs">
-        <li class="tab "><a href="#profile">Log in</a></li>
+        <li class="tab "><a href="#profile_log_in">Log in</a></li>
+        <li style=" display: none" class="tab "><a href="#profile">profile</a></li>
 
 
 
@@ -58,10 +61,85 @@
 </div>
 
 
+<div id="profile">
+
+
+
+
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img id="cur_image" src="/Unknown.jpg">
+                    <span id="cur_dog_name" class="card-title">Card Title</span>
+                </div>
+                <div class="card-content">
+                    <div class="card_info">
+
+                        <div>
+                            Location
+                            <div id="cur_location"> </div>
+
+                        </div>
+
+
+
+
+                        <div>
+                            dog breed
+                            <div id="cur_breed"> </div>
+
+                        </div>
+                        <div>
+                            your email
+                            <div id="cur_email"> </div>
+
+                        </div>
+                        <div>
+                            dog Gender
+                            <div id="cur_gender"> </div>
+
+                        </div>
+
+                        <div>
+                            Dogs Age?
+                            <div id="cur_age"> </div>
+
+                        </div>
+
+                        <div>
+                            fixed
+                            <div id="cur_fixed"> </div>
+                        </div>
+
+
+
+
+
+                        <div>
+                            About your dog
+                            <div id="cur_interests"> </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 
 
 <!-- log in or  update profile -->
-<div id="profile" class="card-panel">
+<div id="profile_log_in" class="card-panel">
 
 
 
@@ -165,13 +243,16 @@
         </div>
 
 
-        <div class="file-field input-field">
-            <div class="btn">
-                <span>File</span>
-                <input id="image" type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+        <div class="row">
+            Upload a profile pic for your dog:<br>
+
+            <div class="col s4">
+                <a class="waves-effect waves-light" id="uploadImage" style="width: 100%; height: 100%;">
+                    <div class="image-cropper">
+                        <img id="profilePreview" alt="" class="circle responsive-img"
+                            src="https://cdn.filestackcontent.com/UVLL8jDSPGfGTEHWfq7z">
+                    </div>
+                </a>
             </div>
         </div>
 
