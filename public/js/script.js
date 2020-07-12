@@ -85,6 +85,10 @@ $(function () {
                 });
 
                 // format dog as bootstrap card
+                if (markers.length) {
+                    map.setCenter(markers[0].getPosition())
+
+                }
             })
         }).catch(err => console.log(err))
     }
@@ -195,7 +199,7 @@ function initMap() {
         inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
 
     }, () => {
-        console.log("no geo")
+        prompt("location required")
 
     })
 
@@ -234,7 +238,7 @@ $(document).ready(function () {
     $(".sidenav").sidenav();
 });
 //todo remove
-let imageURL = "https://cdn.filestackcontent.com/liESsvxvRpCmkLH8EDwr"
+let imageURL
 const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
 const client = filestack.init(API_KEY);
 const options = {
@@ -256,6 +260,11 @@ $("#uploadImage").on("click", () => {
 })
 
 
+$("#map-back").on("click", () => {
+    $('.tabs').tabs("select", "map-tab");
+
+
+})
 
 function showCurrentProfile(profile) {
     console.log(profile)

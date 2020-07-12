@@ -7,6 +7,16 @@
   background-color: #999;
   height:100vh;
 }
+#map{
+height: 60vh;
+
+}
+
+#profile >.row{
+  width: 40vw;
+  float: right;
+
+}
 
 .form{
   position: absolute;
