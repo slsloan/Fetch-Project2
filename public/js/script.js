@@ -27,7 +27,8 @@ $(function () {
 
             // navigate to "/dogs"
             $('.tabs').tabs('select', 'index');
-            fetchDogs()
+            window.location.href = "/dogs"
+
         }).catch(err => console.log(err))
     }
 
@@ -186,6 +187,19 @@ function initMap() {
 
     // end of .then()
     // });
+} if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+        inputMap = {
+
+        }
+        inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
+
+    }, () => {
+        console.log("no geo")
+
+    })
+
+
 }
 let inputMap
 if ($("#inputMap").length) {
@@ -219,7 +233,8 @@ $(document).ready(function () {
 
     $(".sidenav").sidenav();
 });
-let imageURL
+//todo remove
+let imageURL = "https://cdn.filestackcontent.com/liESsvxvRpCmkLH8EDwr"
 const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
 const client = filestack.init(API_KEY);
 const options = {

@@ -8,6 +8,12 @@
   height:100vh;
 }
 
+.form{
+  position: absolute;
+  top: 5vh;
+  right: 0;
+  width: 100vw;
+}
 #logo {
   margin-top: 2px;
 }
