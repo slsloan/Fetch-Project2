@@ -1,13 +1,13 @@
 // import dependencies
-var express = require('express');
-var exphbs = require("express-handlebars");
+const express = require('express');
+const exphbs = require("express-handlebars");
 
 // setup the express app
-var app = express();
-var PORT = process.env.PORT || 8080;
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 // require models for syncing
-var db = require("./models");
+const db = require("./models");
 
 // configure middleware
 app.use(express.urlencoded({ extended: true }));
@@ -37,4 +37,4 @@ async function startServer() {
 }
 startServer();
 
-// db.sequelize.sync({ force: true }) -- if you want to delete and rebuild the table from scratch
+// db.sequelize.sync({ force: true }) // -- if you want to delete and rebuild the table from scratch

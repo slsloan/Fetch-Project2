@@ -7,7 +7,13 @@
     <title>Fetch - Find Cute Dogs in Your Area</title>
 
     <!-- Javascript libraries -->
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlWH6utrjfMALXiqcB8WmzrWS1aDCUThM"
+        type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- CSS styles -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -17,20 +23,11 @@
 </head>
 
 <body>
-
-    {{{body}}}
-
+    <div class="container">
+        {{> header}}
+        {{{body}}}
+        {{> footer}}
+    </div>
 </body>
-
-<!-- Hello Team Magma -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlWH6utrjfMALXiqcB8WmzrWS1aDCUThM"
-    type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-<script src="js/script.js"></script>
 
 </html>

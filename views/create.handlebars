@@ -4,38 +4,28 @@ Alright tell us all about your furry little friend!
     <form class="col s12">
         <div class="row">
             <div class="input-field col s4">
-                <input placeholder="Max" id="name" type="text" class="validate">
-                <label for="first_name">Name:</label>
+                <input id="name" type="text" class="validate">
+                <label for="name">Name:</label>
             </div>
-        </div>
 
-        <div class="row">
             <div class="input-field col s4">
-                <input placeholder="German Shepard" id="breed" type="text" class="validate">
-                <label for="first_name">Breed:</label>
+                <input id="breed" type="text" class="validate">
+                <label for="breed">Breed:</label>
             </div>
-        </div>
 
-        <div class="row">
             <div class="input-field col s4">
-                <select>
-                    <option value="1" selected>Male</option>
-                    <option value="2">Female</option>
-                    <option value="3">Non-binary</option>
+                <select id="gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
                 </select>
                 <label>Gender:</label>
             </div>
         </div>
 
         <div class="row">
-            Drop a pin to show us where your dog lives:<br>
-            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-
-        <div class="row">
-            Upload a profile pic for your dog:<br>
-
-            <div class="col s4">
+            <div class="col s6">
+                Upload a profile pic for your dog:<br>
                 <a class="waves-effect waves-light" id="uploadImage" style="width: 100%; height: 100%;">
                     <div class="image-cropper">
                         <img id="profilePreview" alt="" class="circle responsive-img"
@@ -43,11 +33,31 @@ Alright tell us all about your furry little friend!
                     </div>
                 </a>
             </div>
+
+            <div class="col s6">
+                Share your location and we'll drop a pin to show where you dog lives:<br>
+                <div class="input-field col s4">
+                    <input disabled value="" id="latitude" type="text" class="active">
+                    <label for="latitude">Latitude:</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input disabled value="" id="longitude" type="text" class="active">
+                    <label for="longitude">Longitude:</label>
+                </div>
+
+                <div class="col s4">
+                    <a class="btn-floating btn-large waves-effect waves-light red" id="locationButton"><i
+                            class="material-icons">add</i></a>
+                </div>
+            </div>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light" id="submitButton">Submit
             <i class="material-icons right">send</i>
         </button>
+
+        <script src="js/create.js"></script>
 
     </form>
 </div>

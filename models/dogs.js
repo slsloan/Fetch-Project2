@@ -6,12 +6,12 @@ module.exports = function (sequelize, DataTypes) {
         },
         breed: DataTypes.STRING,
         gender: DataTypes.STRING,
-        location_longitutde: {
-            type: DataTypes.DECIMAL,
+        longitude: {
+            type: DataTypes.DOUBLE(25, 14),
             allowNull: false
         },
-        location_latitude: {
-            type: DataTypes.DECIMAL,
+        latitude: {
+            type: DataTypes.DOUBLE(25, 14),
             allowNull: false
         },
         profile_url: DataTypes.STRING
