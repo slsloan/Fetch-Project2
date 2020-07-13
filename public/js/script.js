@@ -1,4 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded
+$(".modal").modal()
+
 let allDogs = []
 let markers = []
 $(function () {
@@ -94,13 +96,13 @@ $(function () {
     }
 
     // handle change event for my first name input
-    $("#dog_name").on("change", event => {
+    $("#firstName").on("change", event => {
         // destructure event
         first_name = event.target.value
 
     })
     // handle change event for my last name input
-    $("dog_last_name").on("change", event => {
+    $("#lastName").on("change", event => {
         // destructure event
         last_name = event.target.value
 
@@ -140,8 +142,15 @@ $(function () {
     $("form").on("submit", event => {
         // prevent default
         event.preventDefault()
-        if (!imageURL) return (alert("image required"))
-        if (!inputMap.UserLocation) return alert('loc required;')
+        if (!imageURL) return (M.toast({
+            html: "Image Required"
+        }))
+        if (!inputMap.UserLocation) return (M.toast({
+            html: "location required"
+        }))
+
+
+
 
 
         // create payload
@@ -182,18 +191,20 @@ function initMap() {
         { lat: 39.7555, lng: -105.2211 },
     ];
     // Map default View
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: uluru,
-        zoom: 12,
-    });
+    if ($("#map").length) {
 
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: uluru,
+            zoom: 12,
+        });
+    }
 
 
     // end of .then()
     // });
 } if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-        inputMap = {
+        if (!inputMap) inputMap = {
 
         }
         inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
@@ -236,6 +247,7 @@ $(document).ready(function () {
     mainTabs = $(".tabs").tabs();
 
     $(".sidenav").sidenav();
+    $(".modal").modal()
 });
 //todo remove
 let imageURL
