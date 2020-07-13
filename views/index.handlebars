@@ -1,34 +1,32 @@
 <div class="background">
     <div class="row">
-        <div>
+        <div class="col m4">
             <img id="logo" src="./css/fetch_logo2.png" width="180" height="90" alt="logo for fetch">
         </div>
-    </div>
 
-    <div class="row">
         <div class="col m6 offset-m6">
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Create your Fetch Profile!</span>
                     <form>
                         <div class="row">
-                            <div class="input-field col m6">
+                            <div class="input-field col s6">
                                 <input placeholder="Scoobert" id="firstName" name="dog_name" type="text"
                                     class="validate">
                                 <label for="dog_name">Dog's First Name</label>
                             </div>
-                            <div class="input-field col m6">
+                            <div class="input-field col s6">
                                 <input placeholder="Doo" id="lastName" name="dog_last_name" type="text"
                                     class="validate">
                                 <label for="dog_last_name">Dog's Last Name</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col m4">
+                            <div class="input-field col m4 s6">
                                 <input placeholder="Great Dane" id="breed" type="text" class="validate">
                                 <label for="dog_breed">Dog's Breed</label>
                             </div>
-                            <div class="input-field col m4">
+                            <div class="input-field col m4 s6">
                                 <select id="age">
                                     <option value="" disabled selected></option>
                                     <option value="Puppy">Puppy</option>
@@ -55,11 +53,22 @@
                                 <label>Fixed?</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col m12">
+                        <div class="row" style="margin: 0px;">
+                            <div class="input-field col s12">
                                 <input placeholder="ex. Enjoys long walks on the beach" id="interests" type="text"
                                     class="validate">
                                 <label for="dog_interests">Interests:</label>
+                            </div>
+                        </div>
+                        <div class="row valign-wrapper" style="margin-bottom: 10px; margin-left: 10px;">
+                            <p>Upload a profile pic for your dog:</p>
+                            <div class="col s6">
+                                <a class="waves-effect waves-light" id="uploadImage" style="width: 80px; height: 80px;">
+                                    <div class="image-cropper">
+                                        <img id="profilePreview" alt="profilePreview" class="circle responsive-img"
+                                            src="https://cdn.filestackcontent.com/UVLL8jDSPGfGTEHWfq7z">
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div class="card-action">
