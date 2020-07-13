@@ -93,6 +93,7 @@ $(function () {
             $('.tabs').tabs('select', 'index');
             window.location.href = "/dogs"
 
+
         }).catch(err => console.log(err))
     }
 

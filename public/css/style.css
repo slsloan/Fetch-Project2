@@ -1,6 +1,22 @@
 body{
   font-family: 'Bangers', cursive;
   font-size: 1.5em;
+  overflow: hidden;
+
+}
+.slide-in{
+animation: slide-in 1.5s;
+;
+
+}
+@keyframes slide-in{
+from{
+  transform:translateX(100%)
+}
+to{
+  transform:translateX(0%)
+
+}
 }
 .background {
   background-image: url('background.jpg');
