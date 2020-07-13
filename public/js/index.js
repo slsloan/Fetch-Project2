@@ -25,7 +25,7 @@ const initMap = () => {
     })
 }
 
-let imageURL = "https://cdn.filestackcontent.com/Q4K8hilsRKe2OV9un92X"
+let imageURL
 
 const initUpload = () => {
 
@@ -150,7 +150,6 @@ $(function () {
         if (!inputMap.UserLocation) return (M.toast({
             html: "location required"
         }))
-
 
 
         // create payload

@@ -29,6 +29,25 @@ margin-top: -5em;
   right: 0;
   width: 100vw;
 }
+.background2 {
+  background-image: url('background2.jpg');
+  background-position: 50% 20%;
+	background-repeat:  no-repeat;
+	background-attachment: fixed;
+	background-size:  cover;
+  background-color: #999;
+  height:100vh;
+}
+
+#map{
+  height: 60vh;
+}
+  
+#profile >.row {
+    width: 40vw;
+    float: right;
+}
+
 #logo {
   margin-top: 2px;
 }
