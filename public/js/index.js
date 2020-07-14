@@ -1,58 +1,76 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded
-
-let inputMap;
+let inputMap
 const initMap = () => {
-  inputMap = new google.maps.Map(document.getElementById("inputMap"), {
-    center: { lat: 39.7555, lng: -105.2211 },
-    zoom: 12,
-  });
-  // Example Marker
-  let userMarker;
-  google.maps.event.addListener(
-    inputMap,
-    "click",
-    (event) => {
-      inputMap.UserLocation = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-      };
-      $("#uploadImage").on("click", () => {
-        client.picker(options).open();
-      });
-    },
+    inputMap = new google.maps.Map(document.getElementById("inputMap"), {
+        center: { lat: 39.7555, lng: -105.2211 },
+        zoom: 12,
+    });
+    // Example Marker
 
-    $(function () {
-      $("select").formSelect();
-      $(".sidenav").sidenav();
-      $(".modal").modal();
-      initMap();
-      initUpload();
+    let userMarker = undefined
+    google.maps.event.addListener(inputMap, "click", (event) => {
+        inputMap.UserLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
+        if (!userMarker) {
+            userMarker = new google.maps.Marker({ position: inputMap.UserLocation, map: inputMap })
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            if (!inputMap) inputMap = {};
-            inputMap.UserLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-          },
-          () => {
-            M.toast({ html: "location required" });
-          }
-        );
-      }
-      $("#map-btn").on("click", () => $(".modal").modal("open"));
+        }
+        else {
+            userMarker.setPosition(inputMap.UserLocation)
 
-      let first_name = "";
-      let last_name = "";
-      let breed = "";
-      let gender = "";
-      let age = "";
-      let fixed = "";
-      let interests = "";
+        }
 
-      const createDog = (payload) => {
+    })
+}
+
+let imageURL
+const initUpload = () => {
+
+    const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+    const client = filestack.init(API_KEY);
+    const options = {
+        transformations: { // forces users to crop their image into a circle
+            circle: true,
+            force: true
+        },
+        onUploadDone: (file) => {
+            $("#profilePreview").attr("src", file.filesUploaded[0].url);
+            imageURL = file.filesUploaded[0].url;
+        }
+    };
+    $("#uploadImage").on("click", () => {
+        client.picker(options).open()
+    })
+}
+
+$(function () {
+    $('select').formSelect()
+    $(".sidenav").sidenav();
+    $(".modal").modal()
+    initMap();
+    initUpload();
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            if (!inputMap) inputMap = {
+
+            }
+            inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
+
+        }, () => {
+            M.toast({ html: "location required" })
+
+        })
+    }
+    $("#map-btn").on("click", () => $(".modal").modal("open"))
+
+    let first_name = ''
+    let last_name = ''
+    let breed = ''
+    let gender = ''
+    let age = ''
+    let fixed = ''
+    let interests = ''
+
+    const createDog = payload => {
         $.ajax({
           method: "POST",
           url: "/api",
@@ -60,13 +78,13 @@ const initMap = () => {
         })
           .then(() => {
             // reset form inputs
-            $("#dog_name").val("");
-            $("dog_last_name").val("");
-            $("#breed").val("");
-            $("#age").val("");
-            $("#gender").val("");
-            $("#fixed").val("");
-            $("#interests").val("");
+            $("#firstName").val("")
+            $("#lastName").val("")
+            $("#breed").val("")
+            $("#age").val("")
+            $("#gender").val("")
+            $("#fixed").val("")
+            $("#interests").val("")
 
             // navigate to "/dogs"
             $(".tabs").tabs("select", "index");
@@ -75,9 +93,7 @@ const initMap = () => {
           })
           .catch((err) => console.log(err));
       };
-    })
-  );
-};
+})
 
 let imageURL;
 
@@ -217,7 +233,33 @@ $(function () {
       image: imageURL,
     };
 
-    // create dog
-    createDog(payload);
-  });
-});
+    // handle submit event
+    $("form").on("submit", event => {
+        // prevent default
+        event.preventDefault()
+        if (!imageURL) return (M.toast({
+            html: "Image Required"
+        }))
+        if (!inputMap.UserLocation) return (M.toast({
+            html: "location required"
+        }))
+
+
+        // create payload
+        const payload = {
+            first_name: first_name,
+            last_name: last_name,
+            breed: breed,
+            gender: gender,
+            age: age,
+            fixed: fixed,
+            interests: interests,
+            lat: inputMap.UserLocation.lat,
+            long: inputMap.UserLocation.lng,
+            image: imageURL
+        }
+
+        // create dog
+        createDog(payload)
+    })
+  })
