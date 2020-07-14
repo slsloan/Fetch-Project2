@@ -25,7 +25,7 @@ const initMap = () => {
 
 let imageURL;
 const initUpload = () => {
-  const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
+  const API_KEY = process.env.FILESTACK_API_KEY;
   const client = filestack.init(API_KEY);
   const options = {
     transformations: {
