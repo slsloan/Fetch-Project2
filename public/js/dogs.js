@@ -3,7 +3,10 @@ let map
 console.log("tada")
 let allDogs = []
 let markers = []
-
+$(document.querySelector("body > div > div:nth-child(1) > a")).on("click", (event) => {
+    event.preventDefault()
+    navto("/")
+})
 
 const fetchDogs = () => {
     $.ajax({
@@ -61,9 +64,10 @@ const fetchDogs = () => {
     }).catch(err => console.log(err))
 }
 
-$("#map-back").on("click", () => {
+$("#map-back").on("click", async () => {
+    const element = await slideOut($("div.row")[1])
     $('.tabs').tabs("select", "map-tab");
-
+    return slideIn(element)
 })
 
 function showCurrentProfile(profile) {
@@ -80,10 +84,14 @@ function showCurrentProfile(profile) {
     $("#cur_image").attr("src", profile.image)
 
 }
-function handleInfoClick(id) {
+async function handleInfoClick(id) {
+    const element = await slideOut($("div.row")[1])
     const dog = allDogs.find((dog) => id == dog.id)
     showCurrentProfile(dog)
+    return slideIn(element)
+
 }
+
 $(function () {
     $(".tabs").tabs();
     $(".sidenav").sidenav();

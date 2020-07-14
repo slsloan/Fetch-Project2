@@ -1,5 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded
 
+
 let inputMap
 const initMap = () => {
     inputMap = new google.maps.Map(document.getElementById("inputMap"), {
@@ -91,10 +92,10 @@ $(function () {
 
             // navigate to "/dogs"
             $('.tabs').tabs('select', 'index');
-            window.location.href = "/dogs"
 
-
+            return navto("/dogs")
         }).catch(err => console.log(err))
+
     }
 
 
