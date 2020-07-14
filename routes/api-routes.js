@@ -25,7 +25,6 @@ module.exports = function (app) {
         var fixed = req.body.fixed;
         var lat = req.body.lat;
         var long = req.body.long;
-
         var interests = req.body.interests;
 
         // create payload
