@@ -8,20 +8,75 @@ const initMap = () => {
   });
   // Example Marker
   let userMarker;
-  google.maps.event.addListener(inputMap, "click", (event) => {
-    inputMap.UserLocation = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
-    };
-    if (!userMarker) {
-      userMarker = new google.maps.Marker({
-        position: inputMap.UserLocation,
-        map: inputMap,
+  google.maps.event.addListener(
+    inputMap,
+    "click",
+    (event) => {
+      inputMap.UserLocation = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      $("#uploadImage").on("click", () => {
+        client.picker(options).open();
       });
-    } else {
-      userMarker.setPosition(inputMap.UserLocation);
-    }
-  });
+    },
+
+    $(function () {
+      $("select").formSelect();
+      $(".sidenav").sidenav();
+      $(".modal").modal();
+      initMap();
+      initUpload();
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            if (!inputMap) inputMap = {};
+            inputMap.UserLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+          },
+          () => {
+            M.toast({ html: "location required" });
+          }
+        );
+      }
+      $("#map-btn").on("click", () => $(".modal").modal("open"));
+
+      let first_name = "";
+      let last_name = "";
+      let breed = "";
+      let gender = "";
+      let age = "";
+      let fixed = "";
+      let interests = "";
+
+      const createDog = (payload) => {
+        $.ajax({
+          method: "POST",
+          url: "/api",
+          data: payload,
+        })
+          .then(() => {
+            // reset form inputs
+            $("#dog_name").val("");
+            $("dog_last_name").val("");
+            $("#breed").val("");
+            $("#age").val("");
+            $("#gender").val("");
+            $("#fixed").val("");
+            $("#interests").val("");
+
+            // navigate to "/dogs"
+            $(".tabs").tabs("select", "index");
+
+            return navto("/dogs");
+          })
+          .catch((err) => console.log(err));
+      };
+    })
+  );
 };
 
 let imageURL;

@@ -9,6 +9,12 @@ animation: slide-in 1.5s;
 ;
 
 }
+
+.slide-out{
+  animation: slide-in 1.5s;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+  }
 @keyframes slide-in{
 from{
   transform:translateX(100%)
@@ -17,6 +23,9 @@ to{
   transform:translateX(0%)
 
 }
+
+
+
 }
 .background {
   background-image: url('background.jpg');
