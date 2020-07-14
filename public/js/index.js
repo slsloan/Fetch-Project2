@@ -13,15 +13,7 @@ const fetchDogs = () => {
         allDogs = dogs// append new node for each dog
         dogs.forEach(dog => {
             // destructure dog
-            const {
-                first_name,
-                last_name,
-
-                lat,
-                long,
-                image,
-                id,
-            } = dog
+            const { first_name, last_name, latitude, longitude, image, interests, id } = dog
 
             var contentString =
                 '<div id="content">' +
@@ -96,6 +88,6 @@ $(function () {
         zoom: 12,
     });
 
-    return fetchDogs()
+    fetchDogs()
 
 });
