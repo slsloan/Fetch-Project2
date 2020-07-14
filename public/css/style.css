@@ -1,13 +1,8 @@
 body{
-  font-family: 'Bangers', cursive;
-  font-size: 1.5em;
   overflow: hidden;
-
 }
 .slide-in{
 animation: slide-in 1.5s;
-;
-
 }
 
 .slide-out{
@@ -25,7 +20,6 @@ to{
 }
 
 
-
 }
 .background {
   background-image: url('background.jpg');
@@ -36,6 +30,7 @@ to{
   background-color: #999;
   height:100vh;
 }
+
 #map{
 height: 60vh;
 
@@ -43,17 +38,10 @@ height: 60vh;
 
 #profile >.row{
   width: 33vw;
-  float: right;
 text-align: center;
 margin-top: -5em;
 }
 
-.form{
-  position: absolute;
-  top: 5vh;
-  right: 0;
-  width: 100vw;
-}
 .background2 {
   background-image: url('background2.jpg');
   background-position: 50% 20%;
@@ -70,7 +58,6 @@ margin-top: -5em;
   
 #profile >.row {
     width: 40vw;
-    float: right;
 }
 
 #logo {
@@ -81,30 +68,24 @@ margin-top: -5em;
   background-color: #f2c33d!important;
   margin-left: -25px;
   margin-bottom: -10px;
-  
 }
 
-#cur_dog_name, .dog-title, #map-back >a{
-
+#cur_dog_name, .dog-title {
   color: #f2c33d!important;
 }
 
-
-@media only screen and (max-width: 600px) {
-  #map-btn {
-    margin-left: -25px!important;
-     margin-top: 2em;
-  
-    }
-    #profile >.row{
-      width: 100%;
-      float: none;
-    margin-top: 0px;
-    }
-
-
-
+#cur_dog_name {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 15px;
 }
-#map-btn {
-  margin-left: 10em;
- }
+
+#map-back {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#mapBackBtn {
+  background-color: #f2c33d;
+  margin: 15px;
+}

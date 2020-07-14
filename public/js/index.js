@@ -1,6 +1,3 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded
-
-
 let inputMap
 const initMap = () => {
     inputMap = new google.maps.Map(document.getElementById("inputMap"), {
@@ -8,8 +5,8 @@ const initMap = () => {
         zoom: 12,
     });
     // Example Marker
-    ;
-    let userMarker
+
+    let userMarker = undefined
     google.maps.event.addListener(inputMap, "click", (event) => {
         inputMap.UserLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
         if (!userMarker) {
@@ -19,15 +16,12 @@ const initMap = () => {
         else {
             userMarker.setPosition(inputMap.UserLocation)
 
-
         }
-
 
     })
 }
 
 let imageURL
-
 const initUpload = () => {
 
     const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
@@ -46,6 +40,7 @@ const initUpload = () => {
         client.picker(options).open()
     })
 }
+
 $(function () {
     $('select').formSelect()
     $(".sidenav").sidenav();
@@ -82,8 +77,8 @@ $(function () {
             data: payload
         }).then(() => {
             // reset form inputs
-            $("#dog_name").val("")
-            $("dog_last_name").val("")
+            $("#firstName").val("")
+            $("#lastName").val("")
             $("#breed").val("")
             $("#age").val("")
             $("#gender").val("")
@@ -165,7 +160,6 @@ $(function () {
             interests: interests,
             lat: inputMap.UserLocation.lat,
             long: inputMap.UserLocation.lng,
-
             image: imageURL
         }
 

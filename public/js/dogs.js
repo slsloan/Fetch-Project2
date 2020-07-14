@@ -1,6 +1,4 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded
 let map
-console.log("tada")
 let allDogs = []
 let markers = []
 $(document.querySelector("body > div > div:nth-child(1) > a")).on("click", (event) => {
@@ -15,13 +13,14 @@ const fetchDogs = () => {
     }).then(dogs => {
         markers.forEach((marker) => marker.setMap(null))
         markers = []
-        allDogs = dogs// append new node for each dog
+        allDogs = dogs
+
+        // append new node for each dog
         dogs.forEach(dog => {
             // destructure dog
             const {
                 first_name,
                 last_name,
-
                 lat,
                 long,
                 image,
@@ -31,31 +30,31 @@ const fetchDogs = () => {
             var contentString =
                 '<div id="content">' +
                 '<img src="' +
-                `${image}  "` +
-                'width="100" height="75">' +
-                `<h1 class="dog-title" onclick="handleInfoClick(${id})" style="font-size: 1.5rem;">` +
-                `${first_name}, ${last_name}` +
+                `${image} "` +
+                'width="90" height="90"' +
+                `onclick="handleInfoClick(${id})">` +
+                `<h1 class="dog-title" onclick="handleInfoClick(${id})" style="font-size: 1.5rem; margin: auto; text-align: center;">` +
+                `${first_name}` +
                 "</h1>" +
-
-
                 "</div>";
 
             var infowindow = new google.maps.InfoWindow({
                 content: contentString,
-            });
+            })
 
             var marker = new google.maps.Marker({
-                position: { lat, lng: long },
+                position: { lat: parseFloat(lat), lng: parseFloat(long) },
                 map: map,
                 title: "Fetch - Find Your Dogs Match",
 
-            });
+            })
+
             markers.push(marker)
             marker.addListener("click", function () {
                 infowindow.open(map, marker);
-            });
 
-            // format dog as bootstrap card
+            })
+
             if (markers.length) {
                 map.setCenter(markers[0].getPosition())
 
@@ -77,10 +76,7 @@ function showCurrentProfile(profile) {
     $("#cur_fixed").text(profile.fixed)
     $("#cur_interests").text(profile.interests)
     $("#cur_age").text(profile.age)
-    $("#cur_location").text(profile.lat + " " + profile.long)
     $("#cur_dog_name").text(profile.first_name + " " + profile.last_name)
-
-    //dummy image info (profile. image)
     $("#cur_image").attr("src", profile.image)
 
 }
