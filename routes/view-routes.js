@@ -8,7 +8,7 @@ module.exports = function (app) {
 
     // @route:  GET /dogs
     // @desc:   Return dogs template
-    app.get("/dogs", function (req, res) {
-        res.render("dogs");
+    app.get("/create", function (req, res) {
+        res.render("create");
     });
 };

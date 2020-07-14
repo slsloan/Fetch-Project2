@@ -25,8 +25,11 @@ require("./routes/api-routes.js")(app);
 require("./routes/view-routes.js")(app);
 
 // start the server
-db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
-        console.log("App listening at http://localhost:" + PORT);
+db.sequelize.authenticate()
+    .then(() => {
+        app.listen(PORT, function () {
+            console.log("App listening at http://localhost:" + PORT);
+        });
     });
-});
+
+// db.sequelize.sync({ force: true }) - this command initializes and deletes the entire database

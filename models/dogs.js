@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-        var Dog = sequelize.define("Dog", {
+        var Dogs = sequelize.define("Dogs", {
                 image: DataTypes.STRING,
                 first_name: DataTypes.STRING,
                 last_name: DataTypes.STRING,
@@ -7,9 +7,15 @@ module.exports = function (sequelize, DataTypes) {
                 gender: DataTypes.STRING,
                 age: DataTypes.STRING,
                 fixed: DataTypes.BOOLEAN,
-                lat: DataTypes.INTEGER,
-                long: DataTypes.INTEGER,
+                latitude: {
+                        type: DataTypes.DOUBLE(25, 14),
+                        allowNull: false
+                },
+                longitude: {
+                        type: DataTypes.DOUBLE(25, 14),
+                        allowNull: false
+                },
                 interests: DataTypes.TEXT
         });
-        return Dog;
+        return Dogs;
 };

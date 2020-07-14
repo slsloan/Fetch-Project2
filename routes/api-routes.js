@@ -1,49 +1,25 @@
-// require our models
-var db = require("../models");
+const db = require("../models");
 
-// routes
+// api-routes
 module.exports = function (app) {
-    // @route:  GET /api
-    // @desc:   Return all dog profiles
     app.get("/api", function (req, res) {
-        db.Dog.findAll({})
+        db.Dogs.findAll({})
             .then(function (result) {
                 res.json(result)
             });
     });
 
-    // @route:  POST /api
-    // @desc:   Create a new dog profile
     app.post("/api", function (req, res) {
-        // destructure request
-        var image = req.body.image;
-        var first_name = req.body.first_name;
-        var last_name = req.body.last_name;
-        var breed = req.body.breed;
-        var gender = req.body.gender;
-        var age = req.body.age;
-        var fixed = req.body.fixed;
-        var lat = req.body.lat;
-        var long = req.body.long;
-        var interests = req.body.interests;
+        const { image, first_name, last_name, breed, gender, age, fixed, latitude, longitude, interests } = req.body
 
-        // create payload
-        var payload = {
-            image: image,
-            first_name: first_name,
-            last_name: last_name,
-            breed: breed,
-            gender: gender,
-            age: age,
-            fixed: fixed,
-            lat: lat,
-            long: long,
-            interests: interests
+        const payload = {
+            image, first_name, last_name, breed, gender, age, fixed, latitude, longitude, interests
         }
 
-        db.Dog.create(payload)
-            .then(function (result) {
-                res.json(result)
+        db.Dogs.create(payload)
+            .then((result) => {
+                res.status(201)
+                res.redirect('/')
             });
     });
 };

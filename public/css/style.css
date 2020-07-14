@@ -99,3 +99,7 @@ margin-top: -5em;
 #map-btn {
   margin-left: 10em;
  }
+
+ nav {
+   min-height: 90px;
+ }

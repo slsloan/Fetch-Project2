@@ -1,174 +1,101 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded
+let map
+let allDogs = []
+let markers = []
 
-let inputMap
-const initMap = () => {
-    inputMap = new google.maps.Map(document.getElementById("inputMap"), {
-        center: { lat: 39.7555, lng: -105.2211 },
-        zoom: 12,
-    });
-    // Example Marker
-    ;
-    let userMarker
-    google.maps.event.addListener(inputMap, "click", (event) => {
-        inputMap.UserLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
-        if (!userMarker) {
-            userMarker = new google.maps.Marker({ position: inputMap.UserLocation, map: inputMap })
+const fetchDogs = () => {
+    $.ajax({
+        method: "GET",
+        url: "/api"
+    }).then(dogs => {
+        markers.forEach((marker) => marker.setMap(null))
+        markers = []
+        allDogs = dogs// append new node for each dog
+        dogs.forEach(dog => {
+            // destructure dog
+            const {
+                first_name,
+                last_name,
 
-        }
-        else {
-            userMarker.setPosition(inputMap.UserLocation)
+                lat,
+                long,
+                image,
+                id,
+            } = dog
+
+            var contentString =
+                '<div id="content">' +
+                '<img src="' +
+                `${image}  "` +
+                'width="100" height="75">' +
+                `<h1 class="dog-title" onclick="handleInfoClick(${id})" style="font-size: 1.5rem;">` +
+                `${first_name}, ${last_name}` +
+                "</h1>" +
 
 
-        }
+                "</div>";
 
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
 
-    })
-}
+            var marker = new google.maps.Marker({
+                position: { lat, lng: long },
+                map: map,
+                title: "Fetch - Find Your Dogs Match",
 
-let imageURL
+            });
+            markers.push(marker)
+            marker.addListener("click", function () {
+                infowindow.open(map, marker);
+            });
 
-const initUpload = () => {
-
-    const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
-    const client = filestack.init(API_KEY);
-    const options = {
-        transformations: { // forces users to crop their image into a circle
-            circle: true,
-            force: true
-        },
-        onUploadDone: (file) => {
-            $("#profilePreview").attr("src", file.filesUploaded[0].url);
-            imageURL = file.filesUploaded[0].url;
-        }
-    };
-    $("#uploadImage").on("click", () => {
-        client.picker(options).open()
-    })
-}
-$(function () {
-    $('select').formSelect()
-    $(".sidenav").sidenav();
-    $(".modal").modal()
-    initMap();
-    initUpload();
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            if (!inputMap) inputMap = {
+            // format dog as bootstrap card
+            if (markers.length) {
+                map.setCenter(markers[0].getPosition())
 
             }
-            inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
-
-        }, () => {
-            M.toast({ html: "location required" })
-
         })
-    }
-    $("#map-btn").on("click", () => $(".modal").modal("open"))
+    }).catch(err => console.log(err))
+}
 
-    let first_name = ''
-    let last_name = ''
-    let breed = ''
-    let gender = ''
-    let age = ''
-    let fixed = ''
-    let interests = ''
+$("#map-back").on("click", () => {
+    $('.tabs').tabs("select", "map-tab");
 
-    const createDog = payload => {
-        $.ajax({
-            method: "POST",
-            url: "/api",
-            data: payload
-        }).then(() => {
-            // reset form inputs
-            $("#dog_name").val("")
-            $("dog_last_name").val("")
-            $("#breed").val("")
-            $("#age").val("")
-            $("#gender").val("")
-            $("#fixed").val("")
-            $("#interests").val("")
-
-            // navigate to "/dogs"
-            $('.tabs').tabs('select', 'index');
-            window.location.href = "/dogs"
-
-
-        }).catch(err => console.log(err))
-    }
-
-
-    // handle change event for my first name input
-    $("#firstName").on("change", event => {
-        // destructure event
-        first_name = event.target.value
-
-    })
-    // handle change event for my last name input
-    $("#lastName").on("change", event => {
-        // destructure event
-        last_name = event.target.value
-
-    })
-    // handle change event for my breed input
-    $("#breed").on("change", event => {
-        // destructure event
-        breed = event.target.value
-
-    })
-    // handle change event for my age input
-    $("#age").on("change", event => {
-        // destructure event
-        age = event.target.value
-
-    })
-    // handle change event for my gender input
-    $("#gender").on("change", event => {
-        // destructure event
-        gender = event.target.value
-
-    })
-    // handle change event for my fixed input
-    $("#fixed").on("change", event => {
-        // destructure event
-        fixed = parseFloat(event.target.value)
-
-    })
-    // handle change event for my interests input
-    $("#interests").on("change", event => {
-        // destructure event
-        interests = event.target.value
-
-    })
-
-    // handle submit event
-    $("form").on("submit", event => {
-        // prevent default
-        event.preventDefault()
-        if (!imageURL) return (M.toast({
-            html: "Image Required"
-        }))
-        if (!inputMap.UserLocation) return (M.toast({
-            html: "location required"
-        }))
-
-
-        // create payload
-        const payload = {
-            first_name: first_name,
-            last_name: last_name,
-            breed: breed,
-            gender: gender,
-            age: age,
-            fixed: fixed,
-            interests: interests,
-            lat: inputMap.UserLocation.lat,
-            long: inputMap.UserLocation.lng,
-
-            image: imageURL
-        }
-
-        // create dog
-        createDog(payload)
-    })
 })
+
+function showCurrentProfile(profile) {
+    $('.tabs').tabs("select", "profile");
+    $("#cur_gender").text(profile.gender)
+    $("#cur_breed").text(profile.breed)
+    $("#cur_fixed").text(profile.fixed)
+    $("#cur_interests").text(profile.interests)
+    $("#cur_age").text(profile.age)
+    $("#cur_location").text(profile.lat + " " + profile.long)
+    $("#cur_dog_name").text(profile.first_name + " " + profile.last_name)
+
+    //dummy image info (profile. image)
+    $("#cur_image").attr("src", profile.image)
+
+}
+function handleInfoClick(id) {
+    const dog = allDogs.find((dog) => id == dog.id)
+    showCurrentProfile(dog)
+}
+$(function () {
+    $(".tabs").tabs();
+    $(".sidenav").sidenav();
+    $(".modal").modal()
+
+    // fetch dogs
+
+    var uluru = { lat: 39.7555, lng: -105.2211 };
+
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: uluru,
+        zoom: 12,
+    });
+
+    return fetchDogs()
+
+});
