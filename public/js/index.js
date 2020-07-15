@@ -1,8 +1,8 @@
 let inputMap;
 const initMap = () => {
   inputMap = new google.maps.Map(document.getElementById("inputMap"), {
-    center: { lat: 39.7555, lng: -105.2211 },
-    zoom: 12,
+    center: { lat: 39.7392, lng: -104.9903 },
+    zoom: 10,
   });
   // Example Marker
 
@@ -26,7 +26,7 @@ const initMap = () => {
 let imageURL;
 
 const initUpload = () => {
-  const API_KEY = process.env.FILESTACK_API_KEY;
+  const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
   const client = filestack.init(API_KEY);
   const options = {
     transformations: {
