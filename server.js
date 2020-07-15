@@ -25,9 +25,9 @@ require("./routes/api-routes.js")(app);
 require("./routes/view-routes.js")(app);
 
 // start the server
-db.sequelize.authenticate()
+db.sequelize.sync()
     .then(() => {
-        db.sequelize.sync() // builds the table if it doesn't already exist
+        //db.sequelize.sync() // builds the table if it doesn't already exist
         app.listen(PORT, function () {
             console.log("App listening at http://localhost:" + PORT);
         });
