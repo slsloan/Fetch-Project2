@@ -23,8 +23,6 @@ const fetchDogs = () => {
                 `<h1 class="dog-title" onclick="handleInfoClick(${id})" style="font-size: 1.5rem;">` +
                 `${first_name}, ${last_name}` +
                 "</h1>" +
-
-
                 "</div>";
 
             var infowindow = new google.maps.InfoWindow({
@@ -32,10 +30,9 @@ const fetchDogs = () => {
             });
 
             var marker = new google.maps.Marker({
-                position: { lat, lng: long },
+                position: { lat: latitude, lng: longitude },
                 map: map,
                 title: "Fetch - Find Your Dogs Match",
-
             });
             markers.push(marker)
             marker.addListener("click", function () {
@@ -45,7 +42,6 @@ const fetchDogs = () => {
             // format dog as bootstrap card
             if (markers.length) {
                 map.setCenter(markers[0].getPosition())
-
             }
         })
     }).catch(err => console.log(err))
@@ -53,7 +49,6 @@ const fetchDogs = () => {
 
 $("#map-back").on("click", () => {
     $('.tabs').tabs("select", "map-tab");
-
 })
 
 function showCurrentProfile(profile) {
@@ -68,26 +63,45 @@ function showCurrentProfile(profile) {
 
     //dummy image info (profile. image)
     $("#cur_image").attr("src", profile.image)
-
 }
+
 function handleInfoClick(id) {
     const dog = allDogs.find((dog) => id == dog.id)
     showCurrentProfile(dog)
 }
-$(function () {
-    $(".tabs").tabs();
-    $(".sidenav").sidenav();
+
+$(document).ready(() => {
+    $(".tabs").tabs()
+    $(".sidenav").sidenav()
     $(".modal").modal()
 
-    // fetch dogs
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, deniedPosition);
+    } else {
+        deniedPosition()
+    }
 
-    var uluru = { lat: 39.7555, lng: -105.2211 };
+    // in case we fail to get the user's position
+    function deniedPosition() {
+        M.toast({ html: "location not found" })
+        let position = { // set an arbitrary default location in Longmont CO
+            coords: {
+                latitude: 39.7555,
+                longitude: -105.2211
+            }
+        }
+        showPosition(position)
+    }
 
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: uluru,
-        zoom: 12,
-    });
+    function showPosition(position) {
+        let uluru = { lat: position.coords.latitude, lng: position.coords.longitude }
 
-    fetchDogs()
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: uluru,
+            zoom: 13,
+        });
 
+        // populate the map with the dogs in our database
+        fetchDogs()
+    }
 });

@@ -6,7 +6,9 @@ module.exports = function (app) {
         db.Dogs.findAll({})
             .then(function (result) {
                 res.json(result)
-            });
+            })
+            .catch((err) => {
+            })
     });
 
     app.post("/api", function (req, res) {
@@ -18,8 +20,12 @@ module.exports = function (app) {
 
         db.Dogs.create(payload)
             .then((result) => {
+                console.log(payload);
                 res.status(201)
-                res.redirect('/')
-            });
+                    .send('done')
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     });
 };

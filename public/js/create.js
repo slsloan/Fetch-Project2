@@ -1,8 +1,7 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded
 let inputMap
 let imageChanged = false // keeps track of whether or not a new image has been uploaded or not by the user
 
-const initMap = () => {
+function initMap() {
     inputMap = new google.maps.Map(document.getElementById("inputMap"), {
         center: { lat: 39.7555, lng: -105.2211 },
         zoom: 12,
@@ -21,8 +20,8 @@ const initMap = () => {
     })
 }
 
-
-const initUpload = () => {
+// when the image upload button is pushed
+function initUpload() {
     const API_KEY = "ACx1BamWQaWOwZsvMywt8z";
     const client = filestack.init(API_KEY);
     const options = {
@@ -45,39 +44,39 @@ $(document).ready(() => {
     $('select').formSelect()
     $(".sidenav").sidenav();
     $(".modal").modal();
+    $("#map-btn").on("click", () => $(".modal").modal("open"))
     initMap();
     initUpload();
 
+    // get the user's location
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            if (!inputMap) inputMap = {
-
-            }
-            inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
-
-        }, () => {
-            M.toast({ html: "location required" })
-
-        })
+        navigator.geolocation.getCurrentPosition(showPosition, deniedPosition);
+    } else {
+        deniedPosition()
     }
-    $("#map-btn").on("click", () => $(".modal").modal("open"))
 
-    const createDog = (payload) => {
-        $.ajax({
-            method: "POST",
-            url: "/api",
-            data: payload
-        }).then(() => {
-            // after the post requests
-        }).catch(err => console.log(err))
+    // in case we fail to get the user's position
+    function deniedPosition() {
+        M.toast({ html: "location not found" })
+        let position = { // set an arbitrary default location in Longmont CO
+            coords: {
+                latitude: 39.7555,
+                longitude: -105.2211
+            }
+        }
+        showPosition(position)
+    }
+
+    // set the user's location
+    function showPosition(position) {
+        inputMap.UserLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
     }
 
     // handle submit event
     $("#submit").on("click", (event) => {
-        // prevent default
         event.preventDefault()
-        let imageURL = $("#profilePreview").attr("src");
 
+        // Make sure we have the necessary fields
         if (!imageChanged) return (M.toast({
             html: "Image Required"
         }))
@@ -85,23 +84,37 @@ $(document).ready(() => {
             html: "location required"
         }))
 
-
         // create payload
         const payload = {
             first_name: $("#firstName").val(),
             last_name: $("#lastName").val(),
             breed: $("#breed").val(),
-            gender: $("gender").val(),
-            age: $("#age").text(),
+            gender: $("#gender :selected").text(),
+            age: $("#age :selected").text(),
             fixed: $("#fixed").val() != 0 ? true : false,
             interests: $("#interests").val(),
             latitude: inputMap.UserLocation.lat,
             longitude: inputMap.UserLocation.lng,
             interests: $("#interests").val(),
-            image: imageURL
+            image: $("#profilePreview").attr("src")
         }
 
         // create dog
         createDog(payload)
     })
+
+    function createDog(payload) {
+        $.ajax({
+            method: "POST",
+            url: "/api",
+            data: payload
+        })
+            .then(() => {
+                location.href = '/'
+                console.log('redirecting...');
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 })
