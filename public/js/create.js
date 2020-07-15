@@ -111,7 +111,6 @@ $(document).ready(() => {
         })
             .then(() => {
                 location.href = '/'
-                console.log('redirecting...');
             })
             .catch(err => {
                 console.log(err)
