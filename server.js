@@ -28,9 +28,12 @@ require("./routes/view-routes.js")(app);
 db.sequelize.sync()
     .then(() => {
         //db.sequelize.sync() // builds the table if it doesn't already exist
-        app.listen(PORT, function () {
-            console.log("App listening at http://localhost:" + PORT);
-        });
-    });
+        app.listen(PORT, () => {
+            console.log("App listening at http://localhost:" + PORT)
+        })
+    })
+    .catch(() => {
+        console.log('connection failed')
+    })
 
 // db.sequelize.sync({ force: true }) - this command initializes and deletes the entire database
