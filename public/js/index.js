@@ -82,8 +82,8 @@ $(function () {
     })
       .then(() => {
         // reset form inputs
-        $("#dog_name").val("");
-        $("dog_last_name").val("");
+        $("#firstName").val("");
+        $("#lastName").val("");
         $("#breed").val("");
         $("#age").val("");
         $("#gender").val("");
@@ -165,3 +165,4 @@ $(function () {
     createDog(payload);
   });
 });
+
