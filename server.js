@@ -1,7 +1,7 @@
 // import dependencies
+require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-require("dotenv").config();
 
 // setup the express app
 var app = express();
