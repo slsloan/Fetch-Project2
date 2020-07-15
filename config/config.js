@@ -1,4 +1,3 @@
-// Import dotenv dependency
 require("dotenv").config()
 
 module.exports = {
